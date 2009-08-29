@@ -1,5 +1,4 @@
 #include <cstring>
-#include <cassert>
 #include <queue>
 
 int last_edge[MAXV];
@@ -39,13 +38,11 @@ int ek_bfs(int src, int sink, int num_nodes)
 
     ek_q = std::queue<int>();
     ek_q.push(src);
-    ek_visited[src] = 1;
     ek_capres[src] = 0x3f3f3f3f;
 
     while(!ek_q.empty()) {
         int v = ek_q.front(); ek_q.pop();
         if(v == sink) return ek_capres[sink];   
-        assert(ek_visited[v] == 1);
         ek_visited[v] = 2;
 
         for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
