@@ -3,7 +3,10 @@
     <note priority="medium" time="1251400819" done="1251414583">
         Migrar o algoritmo de Dijkstra
     </note>
-    <note priority="medium" time="1251414616">
+    <note priority="medium" time="1251414616" done="1251522246">
         Implementar um Maxflow decente :)
+    </note>
+    <note priority="medium" time="1251522317">
+        Implementar um mincost maxflow usando menores caminhos sucessivos com o relabeling de Edmonds e Karp
     </note>
 </todo>
