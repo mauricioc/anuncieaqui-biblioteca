@@ -34,7 +34,6 @@ inline int rev(int i) { return i ^ 1; }
 int ek_bfs(int src, int sink, int num_nodes)
 {
     memset(ek_visited, 0, sizeof(int) * num_nodes);
-    memset(ek_capres, 0, sizeof(int) * num_nodes);
 
     ek_q = std::queue<int>();
     ek_q.push(src);
