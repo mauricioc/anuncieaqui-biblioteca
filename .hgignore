@@ -1,3 +1,5 @@
+.*\.swp
+tests/.*\.bin
 tests/babel.out
 tests/babel$
 tests/marques.out
