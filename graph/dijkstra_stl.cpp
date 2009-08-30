@@ -1,10 +1,11 @@
 #include "../structures/heap.cpp"
 #include <cstring>
+#include <queue>
 
-int dist[MAXV], last_edge[MAXV];
+int dist[MAXV], last_edge[MAXV], d_visited[MAXV];
 int prev_edge[MAXE], weight[MAXE], adj[MAXE];
 int nedges;
-heap d_h;
+std::priority_queue<std::pair<int, int> > d_q;
 
 void d_init()
 {
@@ -23,16 +24,17 @@ void aresta(int v, int w, int eweight)
 void dijkstra(int s, int num_nodes = MAXV)
 {
     memset(dist, 0x3f, sizeof dist);
-    d_h.init(num_nodes);
-    d_h.decrease_key(s, dist[s] = 0);
+    memset(d_visited, 0, sizeof d_visited);
+    d_q.push(std::make_pair(dist[s] = 0, s));
 
-    while(d_h.size > 0) {
-        int v = d_h.extract_min();
+    while(!d_q.empty()) {
+        int v = d_q.top().second; d_q.pop();
+        if(d_visited[v]) continue; d_visited[v] = true;
 
         for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
             int w = adj[i], new_dist = dist[v] + weight[i];
             if(new_dist < dist[w])
-                d_h.decrease_key(w, dist[w] = new_dist);
+                d_q.push(std::make_pair(-(dist[w] = new_dist), w));
         }
     }
 }

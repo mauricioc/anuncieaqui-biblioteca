@@ -2,6 +2,8 @@
 tests/.*\.bin
 tests/babel.out
 tests/babel$
+tests/babel_stl.out
+tests/babel_stl$
 tests/marques.out
 tests/marques$
 tests/a.out
