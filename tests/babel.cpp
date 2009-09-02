@@ -1,6 +1,6 @@
 #define MAXE 100052
 #define MAXV 105000
-#include "../graph/dijkstra.cpp"
+#include "../graph/dijkstra_sparse_fast.cpp"
 
 #include <queue>
 #include <iostream>
