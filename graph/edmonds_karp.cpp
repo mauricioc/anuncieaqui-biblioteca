@@ -5,13 +5,13 @@ int last_edge[MAXV];
 int prev_edge[MAXE], cap[MAXE], flow[MAXE], adj[MAXE];
 int nedges;
 
-void init_graph()
+void ek_init()
 {
     nedges = 0;
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void aresta(int v, int w, int capacity)
+void ek_aresta(int v, int w, int capacity)
 {
     prev_edge[nedges] = last_edge[v];
     cap[nedges] = capacity;

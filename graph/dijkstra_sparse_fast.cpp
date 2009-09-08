@@ -12,7 +12,7 @@ void d_init()
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void aresta(int v, int w, int eweight)
+void d_aresta(int v, int w, int eweight)
 {
     prev_edge[nedges] = last_edge[v];
     weight[nedges] = eweight;
