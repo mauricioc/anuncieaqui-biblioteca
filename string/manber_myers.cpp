@@ -38,7 +38,6 @@ void mm_updatetree(int root, int l, int r, int pos, int val)
 
 int mm_querytree(int root, int l, int r, int begin, int end)
 {
-    if(begin > end) swap(begin, end);
     if(l == r) return mm_segtree[root];
 
     int m = (l + r + 1)/2;
@@ -53,7 +52,7 @@ void mm_build(string s)
     mm_s = s;
     memset(mm_blast, -1, sizeof mm_blast);
     memset(mm_bh, 0, sizeof(bool) * s.size());
-    memset(mm_segtree, 0x3f3f3f3f, sizeof(int) * 4 * s.size());
+    memset(mm_segtree, 0x3f, sizeof(int) * 4 * s.size());
     mm_updatetree(0, 0, s.size() - 1, s.size() - 1, 0);
 
     for(int i = 0; i < s.size(); i++) {
@@ -100,9 +99,13 @@ void mm_build(string s)
         for(int i = 0; i < s.size(); i++)
             if(!mm_bh[i] && mm_b2h[i]) {
                 mm_bh[i] = true;
-                if(mm_pos[i - 1] + st < s.size() && mm_pos[i] + st <= s.size())
-                    mm_updatetree(0, 0, s.size() - 1, i - 1, st + mm_querytree(0, 0, s.size() - 1,
-                                  mm_prm[mm_pos[i - 1] + st], mm_prm[mm_pos[i] + st] - 1));
+                if(mm_pos[i - 1] + st < s.size() && mm_pos[i] + st < s.size())
+                {
+                    int m = min(mm_prm[mm_pos[i - 1] + st], mm_prm[mm_pos[i] + st]);
+                    int M = max(mm_prm[mm_pos[i - 1] + st], mm_prm[mm_pos[i] + st]);
+                    mm_updatetree(0, 0, s.size() - 1, i - 1,
+                                  st + mm_querytree(0, 0, s.size() - 1, m, M - 1));
+                }
                 else
                     mm_updatetree(0, 0, s.size() - 1, i - 1, st);
             }
@@ -131,7 +134,7 @@ pair<bool, int> mm_find(string s)
         int mid = (low + high)/2;
         c_lcp = max(l, r);
         st_n = 2*st_n + 1 + (l < r);
-        
+
         if(mm_segtree[st_n] >= c_lcp)
             next = c_lcp + mm_lcp(mm_s, mm_pos[mid] + c_lcp, s, c_lcp);
         else
