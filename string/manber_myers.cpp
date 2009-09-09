@@ -84,9 +84,9 @@ void mm_build(string s)
 
         mm_bubbleupbucket(s.size() - st);
         for(int bl = 0, br = 0; br < s.size(); bl = br) {
-	    mm_bubbleupbucket(mm_pos[bl] - st);
+            mm_bubbleupbucket(mm_pos[bl] - st);
             for(br++; !mm_bh[br]; br++)
-		mm_bubbleupbucket(mm_pos[br] - st);
+                mm_bubbleupbucket(mm_pos[br] - st);
 
             for(int i = bl; i < br; i++) {
                 if(mm_pos[i] - st < 0) continue;

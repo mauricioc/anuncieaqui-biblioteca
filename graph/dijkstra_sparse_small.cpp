@@ -32,7 +32,6 @@ void dijkstra(int s, int num_nodes = MAXV)
 
         for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
             int w = adj[i], new_dist = dist[v] + weight[i];
-            //if(cap[i] - flow[i] == 0) continue;
             if(new_dist < dist[w])
                 d_q.push(std::make_pair(-(dist[w] = new_dist), w));
         }
