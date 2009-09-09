@@ -19,6 +19,8 @@ inline void mm_regen_pos(int sz)
 
 inline void mm_bubbleupbucket(int index)
 {
+    if(index < 0) return;
+
     int& prm_ext = mm_prm[index];
     mm_count[prm_ext]++;
     prm_ext += mm_count[prm_ext] - 1;
@@ -38,7 +40,7 @@ void mm_updatetree(int root, int l, int r, int pos, int val)
 
 int mm_querytree(int root, int l, int r, int begin, int end)
 {
-    if(l == r) return mm_segtree[root];
+    if(begin == l && end == r) return mm_segtree[root];
 
     int m = (l + r + 1)/2;
     if(begin < m && end < m) return mm_querytree(2*root + 1, l, m - 1, begin, end);
@@ -76,15 +78,15 @@ void mm_build(string s)
         memset(mm_count, 0, sizeof(int) * s.size());
         memset(mm_b2h, 0, sizeof(bool) * s.size());
 
-        for(int bl = 0, br = 0; br < s.size(); bl = br)
-            for(; br == bl || !mm_bh[br]; br++)
-                mm_prm[mm_pos[br]] = mm_prm[mm_pos[bl]];
+        for(int bl = 0, br = 0; br < s.size(); bl = br++)
+            for(; !mm_bh[br]; br++)
+                mm_prm[mm_pos[br]] = bl;
 
         mm_bubbleupbucket(s.size() - st);
         for(int bl = 0, br = 0; br < s.size(); bl = br) {
-            for(; bl == br || !mm_bh[br]; br++)
-                if(mm_pos[br] - st >= 0)
-                    mm_bubbleupbucket(mm_pos[br] - st);
+	    mm_bubbleupbucket(mm_pos[bl] - st);
+            for(br++; !mm_bh[br]; br++)
+		mm_bubbleupbucket(mm_pos[br] - st);
 
             for(int i = bl; i < br; i++) {
                 if(mm_pos[i] - st < 0) continue;
