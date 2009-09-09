@@ -50,7 +50,6 @@ void dijkstra(int s, int num_nodes = MAXV)
         for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
             if(cap[i] - flow[i] == 0) continue;
             int w = adj[i], new_dist = dist[v] + cost[i] + pot[v] - pot[w];
-            assert(cost[i] + pot[v] - pot[w] >= 0);
 
             if(new_dist < dist[w])
             {
