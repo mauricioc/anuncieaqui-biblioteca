@@ -2,10 +2,11 @@
 
 using namespace std;
 
-int pi[MAXSZ];
+int pi[MAXSZ], res[MAXSZ], nres;
 
 void kmp(string text, string pattern)
 {
+  nres = 0;
   pi[0] = -1;
   for(int i = 1; i < pattern.size(); i++) {
     pi[i] = pi[i-1];
@@ -17,6 +18,9 @@ void kmp(string text, string pattern)
   for(int i = 0; i < text.size(); i++) {
     while(k >= 0 && pattern[k + 1] != text[i]) k = pi[k];
     if(pattern[k + 1] == text[i]) k++;
-    if(k + 1 == pattern.size()) k = pi[k]; //achou!
+    if(k + 1 == pattern.size()) {
+      res[nres++] = i;
+      k = pi[k]; 
+    }
   }
 }
