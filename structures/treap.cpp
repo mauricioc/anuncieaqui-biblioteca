@@ -1,6 +1,7 @@
 #include <ctime>
 #include <cstdlib>
-#define TYPE int
+
+typedef int TYPE;
 
 class treap
 {
