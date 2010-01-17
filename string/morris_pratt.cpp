@@ -20,7 +20,7 @@ void kmp(string text, string pattern)
     if(pattern[k + 1] == text[i]) k++;
     if(k + 1 == pattern.size()) {
       res[nres++] = i;
-      k = pi[k]; 
+      k = pi[k];
     }
   }
 }

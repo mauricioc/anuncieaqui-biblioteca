@@ -1,0 +1,72 @@
+\documentclass[a4paper]{amsart}
+\usepackage[pdftex]{geometry}
+
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{courier}
+\usepackage{fancyhdr}
+
+\lstset{language=C++}
+\lstset{columns=fullflexible}
+\lstset{basicstyle=\scriptsize\ttfamily}
+\lstset{showspaces=false}
+
+\geometry{landscape}
+\setlength{\topmargin}{-0.25in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\columnsep}{1in}
+\setlength{\columnseprule}{0.2pt}
+\textwidth 9.5in
+
+\pagestyle{fancy}
+\lhead{Universidade Federal de Sergipe}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\newcommand{\includefile}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
+    \lstinputlisting{#2/#3}
+  \end{multicols}
+}
+
+\begin{document}
+  \thispagestyle{fancy}
+  \begin{center}
+    \Huge\textsc{ACM ICPC Team Reference \\ 2010 World Finals}
+
+    \ 
+
+    \huge Team Anuncie Aqui \\ Universidade Federal de Sergipe
+
+    \ 
+  \end{center}
+
+    \begin{multicols}{2}
+      \tableofcontents
+    \end{multicols}
+
+    \section{Configuration files and scripts}
+      \includefile{.emacs}{../config}{dotemacs}
+      \includefile{Hash generator}{../config}{hashgen}
+
+   \section{Graph algorithms}
+      \includefile{Dijkstra's algorithm}{../graph}{busacker_gowen.cpp}
+      \includefile{Gabow's algorithm}{../graph}{gabow.cpp}
+      \includefile{Dinic's algorithm}{../graph}{dinic.cpp}
+
+    \section{Math}
+      \includefile{Fractions}{../math}{frac.cpp}
+      \includefile{Chinese remainder theorem}{../math}{crt.cpp}
+
+    \section{Geometry}
+      \includefile{Point class}{../geometry}{point.cpp}
+
+    \section{Data structures}
+      \includefile{Fractions}{../structures}{treap.cpp}
+\end{document}

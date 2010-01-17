@@ -1,9 +1,8 @@
 (global-font-lock-mode t)
 (setq transient-mark-mode t)
 (require 'font-lock)
-(require `paren)
+(require 'paren)
 (global-set-key [f5] 'cxx-compile)
-(global-set-key [f6] 'debug)
 (set-input-mode nil nil 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -12,7 +11,8 @@
   (interactive)
   (progn
     (save-buffer)
-    (compile (concat "g++ " buffer-file-name))
+    (compile (concat "g++ -g -O2 -o " (substring buffer-file-name 0 -4)
+              buffer-file-name))
   )
 )
 

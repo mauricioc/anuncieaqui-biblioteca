@@ -1,0 +1,77 @@
+int last_edge[MAXV], cur_edge[MAXV], dist[MAXV], visited[MAXV];
+int prev_edge[MAXE], cap[MAXE], flow[MAXE], adj[MAXE];
+int nedges;
+
+void d_init() {
+    nedges = 0;
+    memset(last_edge, -1, sizeof last_edge);
+}
+
+void d_aresta(int v, int w, int capacity, bool r = true) {
+    prev_edge[nedges] = last_edge[v];
+    cap[nedges] = capacity;
+    adj[nedges] = w;
+    flow[nedges] = 0;
+    last_edge[v] = nedges++;
+
+    if(r) d_aresta(w, v, 0, false);
+}
+
+bool d_auxflow(int source, int sink) {
+    queue<int> q;
+    q.push(source);
+
+    memset(dist, -1, sizeof dist);
+    dist[source] = 0;
+    memcpy(cur_edge, last_edge, sizeof last_edge);
+
+    while(!q.empty()) {
+        int v = q.front(); q.pop();
+        for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
+            if(cap[i] - flow[i] == 0) continue;
+
+            if(dist[adj[i]] == -1) {
+                dist[adj[i]] = dist[v] + 1;
+                q.push(adj[i]);
+
+                if(adj[i] == sink) return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+inline int rev(int i) { return i ^ 1; }
+
+int d_augmenting(int v, int sink, int c) {
+    if(v == sink) return c;
+    if(visited[v]) return 0;
+    visited[v] = true;
+
+    for(int& i = cur_edge[v]; i != -1; i = prev_edge[i]) {
+        if(cap[i] - flow[i] == 0 || dist[adj[i]] != dist[v] + 1)
+            continue;
+
+        int val;
+        if(val = d_augmenting(adj[i], sink, min(c, cap[i] - flow[i]))) {
+            flow[i] += val;
+            flow[rev(i)] -= val;
+            return val;
+        }
+    }
+
+    return 0;
+}
+
+int dinic(int source, int sink) {
+    int ret = 0;
+    while(d_auxflow(source, sink)) {
+        int flow;
+        memset(visited, 0, sizeof visited);
+        while(flow = d_augmenting(source, sink, 0x3f3f3f3f))
+            ret += flow;
+    }
+
+    return ret;
+}

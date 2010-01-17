@@ -1,41 +1,30 @@
-#include <cstring>
-#include <queue>
-
-int last_edge[MAXV];
+int last_edge[MAXV], ek_visited[MAXV], ek_prev[MAXV], ek_capres[MAXV];
 int prev_edge[MAXE], cap[MAXE], flow[MAXE], adj[MAXE];
 int nedges;
 
-void ek_init()
-{
+void ek_init() {
     nedges = 0;
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void ek_aresta(int v, int w, int capacity)
-{
+void ek_aresta(int v, int w, int capacity, bool r = false) {
     prev_edge[nedges] = last_edge[v];
     cap[nedges] = capacity;
     adj[nedges] = w;
     flow[nedges] = 0;
     last_edge[v] = nedges++;
 
-    prev_edge[nedges] = last_edge[w];
-    cap[nedges] = 0;
-    adj[nedges] = v;
-    flow[nedges] = 0;
-    last_edge[w] = nedges++;
+    if(!r) ek_aresta(w, v, 0, true);
 }
 
-int ek_visited[MAXV], ek_prev[MAXV], ek_capres[MAXV];
-std::queue<int> ek_q;
+queue<int> ek_q;
 
 inline int rev(int i) { return i ^ 1; }
 
-int ek_bfs(int src, int sink, int num_nodes)
-{
+int ek_bfs(int src, int sink, int num_nodes) {
     memset(ek_visited, 0, sizeof(int) * num_nodes);
 
-    ek_q = std::queue<int>();
+    ek_q = queue<int>();
     ek_q.push(src);
     ek_capres[src] = 0x3f3f3f3f;
 
@@ -60,8 +49,7 @@ int ek_bfs(int src, int sink, int num_nodes)
     return 0;
 }
 
-int edmonds_karp(int src, int sink, int num_nodes = MAXV)
-{
+int edmonds_karp(int src, int sink, int num_nodes = MAXV) {
     int ret = 0, new_flow;
 
     while((new_flow = ek_bfs(src, sink, num_nodes)) > 0) {

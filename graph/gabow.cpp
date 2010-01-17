@@ -1,20 +1,13 @@
-#include <cstring>
-#include <queue>
-
-using namespace std;
-
 int prev_edge[MAXE], v[MAXE], w[MAXE], last_edge[MAXV];
 int type[MAXV], label[MAXV], first[MAXV], mate[MAXV], nedges;
 bool g_flag[MAXV], g_souter[MAXV];
 
-void g_init()
-{
+void g_init() {
     nedges = 0;
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void g_aresta(int a, int b)
-{
+void g_aresta(int a, int b) {
     prev_edge[nedges] = last_edge[a];
     v[nedges] = a;
     w[nedges] = b;
@@ -26,8 +19,7 @@ void g_aresta(int a, int b)
     last_edge[b] = nedges++;
 }
 
-void g_label(int v, int join, int edge, queue<int>& outer)
-{
+void g_label(int v, int join, int edge, queue<int>& outer) {
     if(v == join) return;
     if(label[v] == -1) outer.push(v);
 
@@ -38,36 +30,30 @@ void g_label(int v, int join, int edge, queue<int>& outer)
     g_label(first[label[mate[v]]], join, edge, outer);
 }
 
-void g_augment(int _v, int _w)
-{
+void g_augment(int _v, int _w) {
     int t = mate[_v];
     mate[_v] = _w;
 
     if(mate[t] != _v) return;
     if(label[_v] == -1) return;
 
-    if(type[_v] == 0)
-    {
+    if(type[_v] == 0) {
         mate[t] = label[_v];
         g_augment(label[_v], t);
     }
-    else if(type[_v] == 1)
-    {
+    else if(type[_v] == 1) {
         g_augment(v[label[_v]], w[label[_v]]);
         g_augment(w[label[_v]], v[label[_v]]);
     }
 }
 
-int gabow(int n)
-{
+int gabow(int n) {
     memset(mate, -1, sizeof mate);
     memset(first, -1, sizeof first);
 
     int u = 0, ret = 0;
-    for(int z = 0; z < n; z++)
-    {
+    for(int z = 0; z < n; z++) {
         if(mate[z] != -1) continue;
-
 
         memset(label, -1, sizeof label);
         memset(type, -1, sizeof type);
@@ -95,8 +81,7 @@ int gabow(int n)
                     break;
                 }
 
-                if(type[w[i]] == -1)
-                {
+                if(type[w[i]] == -1) {
                     int v = mate[w[i]];
                     if(type[v] == -1) {
                         type[v] = 0;
