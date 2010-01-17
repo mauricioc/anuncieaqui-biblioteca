@@ -1,4 +1,5 @@
 .*\.swp
+.*\.hash
 tests/.*\.bin
 tests/babel.out
 tests/babel$
@@ -7,3 +8,6 @@ tests/babel_stl$
 tests/marques.out
 tests/marques$
 tests/a.out
+tex/biblioteca.aux
+tex/biblioteca.log
+tex/biblioteca.toc
