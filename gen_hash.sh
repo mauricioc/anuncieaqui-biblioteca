@@ -1,2 +1,2 @@
 #!/bin/sh
-md5sum $1 | cut -d' ' -f1 > $2
+`dirname $0`/config/hashgen < $1 > $2

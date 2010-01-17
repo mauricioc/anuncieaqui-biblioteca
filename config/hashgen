@@ -1,2 +1,2 @@
 #!/bin/sh
-sed ':a;N;$!ba;s/[ \n\t]//g' | md5sum
+sed ':a;N;$!ba;s/[ \n\t]//g' | md5sum | cut -d' ' -f1
