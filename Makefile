@@ -1,9 +1,12 @@
 all: tex
 
+view: all
+	evince tex/biblioteca.pdf
+
 LIBRARY_DIRS = config geometry graph math string structures
 ALL_DIRS = $(LIBRARY_DIRS) tex
 
-.PHONY: $(ALL_DIRS)
+.PHONY: $(ALL_DIRS) view
 
 $(ALL_DIRS):
 	$(MAKE) -C $@

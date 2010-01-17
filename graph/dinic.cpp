@@ -1,4 +1,4 @@
-int last_edge[MAXV], cur_edge[MAXV], dist[MAXV], visited[MAXV];
+int last_edge[MAXV], cur_edge[MAXV], dist[MAXV];
 int prev_edge[MAXE], cap[MAXE], flow[MAXE], adj[MAXE];
 int nedges;
 
@@ -46,8 +46,6 @@ inline int rev(int i) { return i ^ 1; }
 
 int d_augmenting(int v, int sink, int c) {
     if(v == sink) return c;
-    if(visited[v]) return 0;
-    visited[v] = true;
 
     for(int& i = cur_edge[v]; i != -1; i = prev_edge[i]) {
         if(cap[i] - flow[i] == 0 || dist[adj[i]] != dist[v] + 1)
@@ -68,7 +66,6 @@ int dinic(int source, int sink) {
     int ret = 0;
     while(d_auxflow(source, sink)) {
         int flow;
-        memset(visited, 0, sizeof visited);
         while(flow = d_augmenting(source, sink, 0x3f3f3f3f))
             ret += flow;
     }

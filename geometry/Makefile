@@ -1,4 +1,4 @@
-FILES = .point.cpp.hash
+FILES = .point.cpp.hash .primitives.cpp.hash
 
 all: $(FILES)
 
