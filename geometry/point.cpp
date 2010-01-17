@@ -18,9 +18,13 @@ struct pt {
     pt operator/(T t) { return pt(x/t, y/t); }
     pt operator/(pt p) { return (*this * ~p)/(p||p); }
 };
+const pt I = pt(0,1);
+
+struct circle { pt c; T r; };
 
 T norm(pt a) { return a||a; }
 T abs(pt a) { return sqrt(a||a); }
+pt unit(pt a) { return a/abs(a); }
 double arg(pt a) { return atan2(a.y, a.x); }
 pt f_polar(T mod, double ang) { return pt(mod * cos(ang), mod * sin(ang)); }
 
