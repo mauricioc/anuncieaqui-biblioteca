@@ -104,7 +104,7 @@ void build(string s) {
 }
 
 inline int lcp(string& s1, int p1, string& s2, int p2) {
-    int limit = std::min(s1.size() - p1, s2.size() - p2), i;
+    int limit = min(s1.size() - p1, s2.size() - p2), i;
     for(i = 0; i < limit; i++) if(s1[p1 + i] != s2[p2 + i]) break;
     return i;
 }

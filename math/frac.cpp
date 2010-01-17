@@ -6,8 +6,8 @@ struct frac {
     frac(long long num) : num(num), den(1) { };
 
     void set_val(long long _num, long long _den) {
-        num = _num/std::__gcd(_num, _den);
-        den = _den/std::__gcd(_num, _den);
+        num = _num/__gcd(_num, _den);
+        den = _den/__gcd(_num, _den);
         if(den < 0) { num *= -1; den *= -1; }
     }
 
