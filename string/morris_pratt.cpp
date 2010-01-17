@@ -1,7 +1,3 @@
-#include <string>
-
-using namespace std;
-
 int pi[MAXSZ], res[MAXSZ], nres;
 
 void kmp(string text, string pattern)

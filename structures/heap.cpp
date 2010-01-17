@@ -1,5 +1,3 @@
-#include <cstring>
-
 struct heap {
     int heap[MAXV][2], v2n[MAXV];
     int size;

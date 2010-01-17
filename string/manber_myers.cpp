@@ -1,12 +1,3 @@
-#include <cstring>
-#include <string>
-#include <utility>
-#include <algorithm>
-
-#define MAXSZ 2
-
-using namespace std;
-
 int pos[MAXSZ], prm[MAXSZ], cnt[MAXSZ];
 bool bh[MAXSZ + 1], b2h[MAXSZ];
 int blast[256], bprev[MAXSZ];

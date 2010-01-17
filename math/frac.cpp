@@ -1,6 +1,3 @@
-#include <algorithm>
-#include <iostream>
-
 struct frac {
     long long num, den;
 
