@@ -5,17 +5,15 @@ int prev_edge[MAXE], adj[MAXE], cap[MAXE], cost[MAXE], flow[MAXE];
 int nedges;
 priority_queue<pair<int, int> > d_q;
 
-inline void bg_aresta(int v, int w, int capacity, int cst, bool r = false) {
+inline void bg_edge(int v, int w, int capacity, int cst, bool r = false) {
     prev_edge[nedges] = last_edge[v];
-
     adj[nedges] = w;
     cap[nedges] = capacity;
     flow[nedges] = 0;
     cost[nedges] = cst;
-
     last_edge[v] = nedges++;
 
-    if(!r) bg_aresta(w, v, 0, -cost, true);
+    if(!r) bg_edge(w, v, 0, -cost, true);
 }
 
 inline int rev(int i) { return i ^ 1; }

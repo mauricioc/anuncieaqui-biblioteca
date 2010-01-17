@@ -7,14 +7,14 @@ void ek_init() {
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void ek_aresta(int v, int w, int capacity, bool r = false) {
+void ek_edge(int v, int w, int capacity, bool r = false) {
     prev_edge[nedges] = last_edge[v];
     cap[nedges] = capacity;
     adj[nedges] = w;
     flow[nedges] = 0;
     last_edge[v] = nedges++;
 
-    if(!r) ek_aresta(w, v, 0, true);
+    if(!r) ek_edge(w, v, 0, true);
 }
 
 queue<int> ek_q;

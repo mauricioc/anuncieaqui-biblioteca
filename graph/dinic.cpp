@@ -7,14 +7,14 @@ void d_init() {
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void d_aresta(int v, int w, int capacity, bool r = true) {
+void d_edge(int v, int w, int capacity, bool r = false) {
     prev_edge[nedges] = last_edge[v];
     cap[nedges] = capacity;
     adj[nedges] = w;
     flow[nedges] = 0;
     last_edge[v] = nedges++;
 
-    if(r) d_aresta(w, v, 0, false);
+    if(!r) d_edge(w, v, 0, true);
 }
 
 bool d_auxflow(int source, int sink) {

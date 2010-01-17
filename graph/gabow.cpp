@@ -7,7 +7,7 @@ void g_init() {
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void g_aresta(int a, int b) {
+void g_edge(int a, int b) {
     prev_edge[nedges] = last_edge[a];
     v[nedges] = a;
     w[nedges] = b;
