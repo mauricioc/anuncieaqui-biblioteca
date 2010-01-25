@@ -1,8 +1,3 @@
-#include <cmath>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
 pt pivot;
 
 bool hull_comp(pt a, pt b) {
@@ -12,7 +7,6 @@ bool hull_comp(pt a, pt b) {
 
 vector<pt> hull(vector<pt> pts) {
     if(pts.size() <= 1) return pts;
-
     vector<pt> ret;
 
     pivot = pts[0];
