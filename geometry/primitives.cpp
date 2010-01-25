@@ -41,6 +41,12 @@ pt ss_isect(pt p, pt q, pt r, pt s) {
     return pt(1/0.0, 1/0.0);
 }
 
+double ps_distance(pt p, pt a, pt b) {
+    p = p - a; b = b - a;
+    double coef = min(max((b||p)/(b||b), TYPE(0)), TYPE(1));
+    return abs(p - b*coef);
+}
+
 pt circumcenter(pt a, pt b, pt c) {
     return parametric_isect((b+a)/2, (b-a)*I, (c+a)/2, (c-a)*I);
 }
