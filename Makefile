@@ -1,7 +1,7 @@
 all: tex
 
 view: all
-	evince tex/biblioteca.pdf
+	evince tex/biblioteca.pdf &
 
 LIBRARY_DIRS = config geometry graph math string structures
 ALL_DIRS = $(LIBRARY_DIRS) tex

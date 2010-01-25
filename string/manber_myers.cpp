@@ -40,7 +40,7 @@ int querytree(int root, int l, int r, int begin, int end) {
                     querytree(2*root + 2, m, r, m, end));
 }
 
-void build(string s) {
+void mm_build(string s) {
     mm_s = s;
     memset(blast, -1, sizeof blast);
     memset(bh, 0, sizeof(bool) * s.size());
@@ -109,7 +109,7 @@ inline int lcp(string& s1, int p1, string& s2, int p2) {
     return i;
 }
 
-pair<bool, int> find(string s) {
+pair<bool, int> mm_find(string s) {
     int l = lcp(mm_s, pos[0], s, 0);
     int r = lcp(mm_s, pos[mm_s.size() - 1], s, 0);
 
