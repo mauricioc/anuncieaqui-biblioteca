@@ -23,8 +23,10 @@ int rt_recurse(int root, int left, int right) {
 	    tree[root].push_back(last = tree[cl][l++]);
 	else tree[root].push_back(last = tree[cr][r++]);
 
-	while(llink < tree[cl].size() && tree[cl][llink].y < last.y) llink++;
-	while(rlink < tree[cr].size() && tree[cr][rlink].y < last.y) rlink++;
+	while(llink < tree[cl].size() && compy(tree[cl][llink].y, last)) 
+	    llink++;
+	while(rlink < tree[cr].size() && compy(tree[cr][rlink].y, last)) 
+	    rlink++;
 
 	lnk[root][0].push_back(llink);
 	lnk[root][1].push_back(rlink);
@@ -39,7 +41,8 @@ void rt_build() {
     rt_recurse(0, 0, xs.size() - 1);
 }
 
-int rt_query(int root, int l, int r, int a, int b, int c, int d, int pos = -1) {
+int rt_query(int root, int l, int r, int a, int b, int c, int d, 
+	     int posl = -1, int posr = -1) {
     if(root == 0 && pos == -1)
 	pos = lower_bound(tree[0].begin(), tree[0].end(), c, compy)
 	    - tree[0].begin();

@@ -1,4 +1,4 @@
-FILES = .heap.cpp.hash .treap.cpp.hash
+FILES = .heap.cpp.hash .treap.cpp.hash .bignum.cpp.hash
 
 all: $(FILES)
 
