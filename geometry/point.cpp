@@ -9,8 +9,8 @@ struct pt {
     pt(TYPE x = 0, TYPE y = 0) : x(x), y(y) { }
 
     bool operator==(pt p) { return cmp(x, p.x) == 0 && cmp(y, p.y) == 0; }
-    bool operator<(pt p) const { 
-	return cmp(x, p.x) ? cmp(x, p.x) < 0 : cmp(y, p.y) < 0; 
+    bool operator<(pt p) const {
+        return cmp(x, p.x) ? cmp(x, p.x) < 0 : cmp(y, p.y) < 0;
     }
     TYPE operator||(pt p) { return x*p.x + y*p.y; }
     TYPE operator%(pt p) { return x*p.y - y*p.x; }

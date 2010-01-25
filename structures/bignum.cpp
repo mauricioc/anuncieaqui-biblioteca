@@ -1,7 +1,7 @@
-const int DIG = 4;                                                     
-const int BASE = 10000; // BASE**3 < 2**51                             	
-const int TAM = 2048;                                                  
-                                                                       
+const int DIG = 4;
+const int BASE = 10000; // BASE**3 < 2**51
+const int TAM = 2048;
+
 struct bigint {
   int v[TAM], n;
   bigint(int x = 0): n(1) {
@@ -33,7 +33,7 @@ struct bigint {
     while (n && !v[n]) n--;
     return *this;
   }
-                                                                       
+
   int cmp(const bigint& x = 0) const {
     int i = max(n, x.n), t = 0;
     while (1) if ((t = ::cmp(v[i], x.v[i])) || i-- == 0) return t;
@@ -41,7 +41,7 @@ struct bigint {
   bool operator <(const bigint& x) const { return cmp(x) < 0; }
   bool operator ==(const bigint& x) const { return cmp(x) == 0; }
   bool operator !=(const bigint& x) const { return cmp(x) != 0; }
-                                                                       
+
   operator string() const {
     ostringstream s; s << v[n];
     for (int i = n - 1; i > 0; i--) {
@@ -68,14 +68,14 @@ struct bigint {
     for (int i = 1, e = 0; (i <= x.n || e) && (n = i + b); i++) {
       v[i+b] += x.v[i] * m + e; e = v[i+b] / BASE; v[i+b] %= BASE;
     }
-  }	
+  }     
   bigint operator *(const bigint& x) const {
     bigint r;
-    for (int i = 1; i <= n; i++) r.ams(x, v[i], i-1);	
+    for (int i = 1; i <= n; i++) r.ams(x, v[i], i-1);   
     return r;
   }
   bigint& operator *=(const bigint& x) { return *this = *this * x; }
-  // cmp(x / y) == cmp(x) * cmp(y); cmp(x % y) == cmp(x);	
+  // cmp(x / y) == cmp(x) * cmp(y); cmp(x % y) == cmp(x);       
   bigint div(const bigint& x) {
     if (x == 0) return 0;
     bigint q; q.n = max(n - x.n + 1, 0);
@@ -91,8 +91,8 @@ struct bigint {
   }
   bigint& operator /=(const bigint& x) { return *this = div(x); }
   bigint& operator %=(const bigint& x) { div(x); return *this; }
-  bigint operator /(const bigint& x) { return bigint(*this).div(x); }	
-  bigint operator %(const bigint& x) { return bigint(*this) %= x; }	
+  bigint operator /(const bigint& x) { return bigint(*this).div(x); }   
+  bigint operator %(const bigint& x) { return bigint(*this) %= x; }     
   bigint pow(int x) {
     if (x < 0) return (*this == 1 || *this == -1) ? pow(-x) : 0;
     bigint r = 1;
@@ -110,5 +110,5 @@ struct bigint {
       if (cmp(b.pow(x)) >= 0) { d += 1; a = b; }
     }
     return a;
-  }	
+  }     
 };
