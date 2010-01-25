@@ -28,6 +28,8 @@ struct circle { pt c; TYPE r; };
 TYPE norm(pt a) { return a||a; }
 TYPE abs(pt a) { return sqrt(a||a); }
 TYPE dist(pt a, pt b) { return abs(a - b); }
+TYPE area(pt a, pt b, pt c) { return (a-c)%(b-c); }
+int ccw(pt a, pt b, pt c) { return sgn(area(a, b, c)); }
 pt unit(pt a) { return a/abs(a); }
 double arg(pt a) { return atan2(a.y, a.x); }
 pt f_polar(TYPE mod, double ang) { return pt(mod * cos(ang), mod * sin(ang)); }
