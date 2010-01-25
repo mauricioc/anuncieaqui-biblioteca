@@ -2,7 +2,7 @@ pt pivot;
 
 bool hull_comp(pt a, pt b) {
     int turn = ccw(a, b, pivot);
-    return turn == 1 || (turn == 0 && norm(a) < norm(b));
+    return turn == 1 || (turn == 0 && cmp(norm(a), norm(b)) < 0);
 }
 
 vector<pt> hull(vector<pt> pts) {
