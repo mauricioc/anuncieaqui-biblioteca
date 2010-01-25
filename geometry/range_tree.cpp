@@ -1,5 +1,3 @@
-#define MAXSZ 100000
-
 vector<pt> pts, tree[MAXSZ];
 vector<TYPE> xs;
 vector<int> lnk[MAXSZ][2];
