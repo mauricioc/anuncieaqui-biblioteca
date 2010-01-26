@@ -30,6 +30,10 @@ int point_polygon(pt p, vector<pt>& pol) {
     return count % 2;
 }
 
+bool point_circle(pt p, circle c) {
+    return cmp(abs(p - c.c), c.r) <= 0;
+}
+
 pt parametric_isect(pt p, pt v, pt q, pt w) {
     double t = ((q-p)%w)/(v%w);
     return p + v*t;

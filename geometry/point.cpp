@@ -23,7 +23,10 @@ struct pt {
 };
 const pt I = pt(0,1);
 
-struct circle { pt c; TYPE r; };
+struct circle { 
+    pt c; TYPE r;  
+    circle(pt c, TYPE r) : c(c), r(r) { }
+};
 
 TYPE norm(pt a) { return a||a; }
 TYPE abs(pt a) { return sqrt(a||a); }
