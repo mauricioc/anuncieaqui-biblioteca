@@ -1,4 +1,4 @@
-FILES = .crt.cpp.hash .frac.cpp.hash .lis.cpp.hash
+FILES = .crt.cpp.hash .frac.cpp.hash .lis.cpp.hash .simplex.cpp.hash
 
 all: $(FILES)
 
