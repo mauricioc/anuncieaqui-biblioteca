@@ -6,6 +6,7 @@ struct pt {
     bool operator<(pt p) const {
         return cmp(x, p.x) ? cmp(x, p.x) < 0 : cmp(y, p.y) < 0;
     }
+    bool operator<=(pt p) { return *this < p || *this == p; }
     TYPE operator||(pt p) { return x*p.x + y*p.y; }
     TYPE operator%(pt p) { return x*p.y - y*p.x; }
     pt operator~() { return pt(x, -y); }

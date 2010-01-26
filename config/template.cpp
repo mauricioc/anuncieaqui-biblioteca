@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <cmath>
 
+using namespace std;
+
 typedef double TYPE;
 const TYPE EPS = 1e-9;
 
