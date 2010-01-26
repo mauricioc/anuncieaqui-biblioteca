@@ -1,4 +1,4 @@
-FILES = .crt.cpp.hash .frac.cpp.hash .lis.cpp.hash .simplex.cpp.hash .romberg.cpp.hash
+FILES = .crt.cpp.hash .frac.cpp.hash .lis.cpp.hash .simplex.cpp.hash .romberg.cpp.hash .polynomials.cpp.hash .floyd.cpp.hash .pollard.cpp.hash .miller_rabin.cpp.hash
 
 all: $(FILES)
 
