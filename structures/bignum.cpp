@@ -68,14 +68,14 @@ struct bigint {
     for (int i = 1, e = 0; (i <= x.n || e) && (n = i + b); i++) {
       v[i+b] += x.v[i] * m + e; e = v[i+b] / BASE; v[i+b] %= BASE;
     }
-  }     
+  }
   bigint operator *(const bigint& x) const {
     bigint r;
-    for (int i = 1; i <= n; i++) r.ams(x, v[i], i-1);   
+    for (int i = 1; i <= n; i++) r.ams(x, v[i], i-1);
     return r;
   }
   bigint& operator *=(const bigint& x) { return *this = *this * x; }
-  // cmp(x / y) == cmp(x) * cmp(y); cmp(x % y) == cmp(x);       
+  // cmp(x / y) == cmp(x) * cmp(y); cmp(x % y) == cmp(x);
   bigint div(const bigint& x) {
     if (x == 0) return 0;
     bigint q; q.n = max(n - x.n + 1, 0);
@@ -91,8 +91,8 @@ struct bigint {
   }
   bigint& operator /=(const bigint& x) { return *this = div(x); }
   bigint& operator %=(const bigint& x) { div(x); return *this; }
-  bigint operator /(const bigint& x) { return bigint(*this).div(x); }   
-  bigint operator %(const bigint& x) { return bigint(*this) %= x; }     
+  bigint operator /(const bigint& x) { return bigint(*this).div(x); }
+  bigint operator %(const bigint& x) { return bigint(*this) %= x; }
   bigint pow(int x) {
     if (x < 0) return (*this == 1 || *this == -1) ? pow(-x) : 0;
     bigint r = 1;
@@ -110,5 +110,5 @@ struct bigint {
       if (cmp(b.pow(x)) >= 0) { d += 1; a = b; }
     }
     return a;
-  }     
+  }
 };

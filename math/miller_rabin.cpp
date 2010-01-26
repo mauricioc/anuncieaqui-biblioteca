@@ -1,15 +1,15 @@
 int fastpow(int base, int d, int n) {
     int ret = 1;
     for(long long pow = base; d > 0; d >>= 1, pow = (pow * pow) % n)
-	if(d & 1)
-	    ret = (ret * pow) % n;
+        if(d & 1)
+            ret = (ret * pow) % n;
     return ret;
 }
 
 bool miller_rabin(int n, int base) {
     if(n <= 1) return false;
     if(n % 2 == 0) return n == 2;
-    
+
     int s = 0, d = n - 1;
     while(d % 2 == 0) d /= 2, s++;
 
@@ -18,11 +18,11 @@ bool miller_rabin(int n, int base) {
     int base_2r = base_d;
 
     for(int i = 0; i < s; i++) {
-	if(base_2r == 1) return false;
-	if(base_2r == n - 1) return true;
-	base_2r = (long long)base_2r * base_2r % n;
+        if(base_2r == 1) return false;
+        if(base_2r == n - 1) return true;
+        base_2r = (long long)base_2r * base_2r % n;
     }
-    
+
     return false;
 }
 

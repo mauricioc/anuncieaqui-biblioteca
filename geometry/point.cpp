@@ -1,9 +1,3 @@
-typedef double TYPE;
-const TYPE EPS = 1e-9;
-
-inline int sgn(TYPE a) { return a > EPS ? 1 : (a < -EPS ? -1 : 0); }
-inline int cmp(TYPE a, TYPE b) { return sgn(a - b); }
-
 struct pt {
     TYPE x, y;
     pt(TYPE x = 0, TYPE y = 0) : x(x), y(y) { }
@@ -23,8 +17,8 @@ struct pt {
 };
 const pt I = pt(0,1);
 
-struct circle { 
-    pt c; TYPE r;  
+struct circle {
+    pt c; TYPE r;
     circle(pt c, TYPE r) : c(c), r(r) { }
 };
 
@@ -36,6 +30,7 @@ int ccw(pt a, pt b, pt c) { return sgn(area(a, b, c)); }
 pt unit(pt a) { return a/abs(a); }
 double arg(pt a) { return atan2(a.y, a.x); }
 pt f_polar(TYPE mod, double ang) { return pt(mod * cos(ang), mod * sin(ang)); }
+inline int g_mod(int i, int n) { if(i == n) return 0; return i; }
 
 ostream& operator<<(ostream& o, pt p) {
     return o << "(" << p.x << "," << p.y << ")";

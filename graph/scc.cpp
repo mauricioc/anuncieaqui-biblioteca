@@ -20,19 +20,19 @@ int tarjan_dfs(int v) {
 
     visited[v] = 1;
     for(int i = last_edge[v]; i != -1; i = prev_edge[i]) {
-	int w = adj[i];
-	if(visited[w] == 0) lowest[v] = min(lowest[v], tarjan_dfs(w));
-	else if(visited[w] == 1) lowest[v] = min(lowest[v], num[w]);
+        int w = adj[i];
+        if(visited[w] == 0) lowest[v] = min(lowest[v], tarjan_dfs(w));
+        else if(visited[w] == 1) lowest[v] = min(lowest[v], num[w]);
     }
 
     if(lowest[v] == num[v]) {
-	int last = -1;
-	while(last != v) {
-	    comp[last = visiting.top()] = cur_comp;
-	    visited[last] = 2;
-	    visiting.pop();
-	}	
-	cur_comp++;
+        int last = -1;
+        while(last != v) {
+            comp[last = visiting.top()] = cur_comp;
+            visited[last] = 2;
+            visiting.pop();
+        }
+        cur_comp++;
     }
 
     return lowest[v];
@@ -42,8 +42,8 @@ void tarjan_scc(int num_v = MAXV) {
     visiting = stack<int>();
     memset(visited, 0, sizeof visited);
     cur_num = cur_comp = 0;
-    
+
     for(int i = 0; i < num_v; i++)
-	if(!visited[i])
-	    tarjan_dfs(i);
+        if(!visited[i])
+            tarjan_dfs(i);
 }
