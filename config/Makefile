@@ -1,4 +1,4 @@
-FILES = .dotemacs.hash .hashgen.hash
+FILES = .dotemacs.hash .hashgen.hash .template.cpp.hash
 
 all: $(FILES)
 
