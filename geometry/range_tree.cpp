@@ -5,7 +5,7 @@ vector<int> lnk[MAXSZ][2];
 int rt_recurse(int root, int left, int right) {
     if(left == right) {
         vector<pt>::iterator it;
-        it = lower_bound(pts.begin(), pts.end(), pt(xs[left], -1e9));
+        it = lower_bound(pts.begin(), pts.end(), pt(xs[left], -INF));
         for(; it != pts.end() && it->x == xs[left]; it++)
             tree[root].push_back(*it);
 
@@ -47,9 +47,9 @@ void rt_build() {
 int rt_query(int root, int l, int r, TYPE a, TYPE b, TYPE c, TYPE d,
              int posl = -1, int posr = -1) {
     if(root == 0 && posl == -1) {
-        posl = lower_bound(tree[0].begin(), tree[0].end(), pt(1e9, c), compy)
+        posl = lower_bound(tree[0].begin(), tree[0].end(), pt(-INF, c), compy)
             - tree[0].begin();
-	posr = upper_bound(tree[0].begin(), tree[0].end(), pt(1e9, d), compy)
+	posr = upper_bound(tree[0].begin(), tree[0].end(), pt(INF, d), compy)
 	    - tree[0].begin();
     }
 

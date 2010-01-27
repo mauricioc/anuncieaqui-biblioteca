@@ -49,7 +49,7 @@ pair<pt, pt> closest_points_rec(vector<pt>& px, vector<pt>& py) {
 }
 
 pair<pt, pt> closest_points(vector<pt> pts) {
-    if(pts.size() == 1) return make_pair(pt(-1e9, -1e9), pt(1e9, 1e9));
+    if(pts.size() == 1) return make_pair(pt(-INF, -INF), pt(INF, INF));
 
     sort(pts.begin(), pts.end());
     for(int i = 0; i + 1 < pts.size(); i++)
