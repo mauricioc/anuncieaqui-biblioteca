@@ -37,21 +37,16 @@ int kd_query(int root, TYPE a, TYPE b, TYPE c, TYPE d, TYPE ca = -INF,
     int ret = 0;
     if(x) {
 	if(a <= split[root]) 
-	    ret += kd_query(2*root + 1, a, b, c, d, 
-			    ca, min(cb, split[root]), cc, cd, !x);
+	    ret += kd_query(2*root+1, a, b, c, d, ca, split[root], cc, cd, !x);
 	if(split[root] <= b) 
-	    ret += kd_query(2*root + 2, a, b, c, d, 
-			    max(ca, split[root]), cb, cc, cd, !x);
+	    ret += kd_query(2*root+2, a, b, c, d, split[root], cb, cc, cd, !x);
     }
     else {
 	if(c <= split[root]) 
-	    ret += kd_query(2*root + 1, a, b, c, d, 
-			    ca, cb, cc, min(cd, split[root]), !x);
+	    ret += kd_query(2*root+1, a, b, c, d, ca, cb, cc, split[root], !x);
 	if(split[root] <= d) 
-	    ret += kd_query(2*root + 2, a, b, c, d, 
-			    ca, cb, max(cc, split[root]), cd, !x);
+	    ret += kd_query(2*root+2, a, b, c, d, ca, cb, split[root], cd, !x);
     }
-
     return ret;
 }
 
