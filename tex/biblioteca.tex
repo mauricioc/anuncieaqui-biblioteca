@@ -1,7 +1,9 @@
 \documentclass[a4paper]{amsart}
 \usepackage[pdftex]{geometry}
+\usepackage[utf8]{inputenc}
 
 \usepackage{listings}
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{multicol}
 \usepackage{courier}
@@ -35,6 +37,10 @@
   \end{multicols}
 }
 
+\newcommand{\stirlingfirst}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newenvironment{tablehere}{\def\@captype{table}}{}
+
 \begin{document}
   \thispagestyle{fancy}
   \begin{center}
@@ -54,6 +60,7 @@
 
   \section{Configuration files and scripts}
     \includefile{.emacs}{../config}{dotemacs}
+    \includefile{.vimrc}{../config}{dotvimrc}
     \includefile{Hash generator}{../config}{hashgen}
     \includefile{Solution template}{../config}{template.cpp}
 
@@ -93,4 +100,92 @@
   \section{String algorithms}
     \includefile{Manber-Myers' algorithm}{../string}{manber_myers.cpp}
     \includefile{Morris-Pratt's algorithm}{../string}{morris_pratt.cpp}
+
+  \enlargethispage*{\baselineskip}
+  \pagebreak
+
+  \section{Useful mathematical facts}
+  \begin{multicols}{2}
+    \subsection{Prime counting function ($\pi(x)$)} The prime counting function is asymptotic to $\frac{x}{\log x}$, by the prime number theorem.
+
+      \ 
+
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline 
+                  & 10 & $10^2$ & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$ & $10^8$\\ \hline
+          $\pi(x)$&  4 &   25 & 168 & 1.229 & 9.592 & 78.498 & 664.579 & 50.847.534\\ \hline
+      \end{tabular}
+
+    \subsection{Catalan numbers} Catalan numbers are defined by the recurrence:
+      \begin{equation*}
+        C_{n+1} = \sum_{i=0}^nC_iC_{n-i}
+      \end{equation*}
+
+      A closed formula for Catalan numbers is:
+      \begin{equation*}
+        C_n = \frac{1}{n+1}\binom{2n}{n} = \binom{2n}{n} - \binom{2n}{n+1}
+      \end{equation*}
+
+    \subsection{Stirling numbers of the first kind} These are the number of permutations of $I_n$ with exactly $k$ disjoint cycles. They obey the recurrence:
+      \begin{equation*}
+        \stirlingfirst{n}{k} = (n-1)\stirlingfirst{n-1}{k} + \stirlingfirst{n-1}{k-1}
+      \end{equation*}
+
+    \subsection{Stirling numbers of the second kind} These are the number of ways to partition $I_n$ into exactly $k$ sets. They obey the recurrence:
+      \begin{equation*}
+        \stirlingsecond{n}{k} = k\stirlingsecond{n-1}{k} + \stirlingsecond{n-1}{k-1}
+      \end{equation*}
+
+      A ``closed'' formula for it is:
+      \begin{equation*}
+        \stirlingsecond{n}{k} = \frac{1}{k!}\sum_{j=0}^k (-1)^{k-j} \binom{k}{j} j^n
+      \end{equation*}
+
+    \subsection{Turán's theorem} No graph with $n$ vertices that is $K_{r+1}$-free can have more edges than the Turán graph: A $k$-partite complete graph with sets of size as equal as possible.
+
+    \subsection{Table of trigonometric integrals}
+      A list of common and not-so-common trigonometric integrals:
+
+      \ 
+
+      \begin{tabular}{|c|c|}
+        \hline 
+        $\int \tan x dx$ & $-\ln |\cos x|$ \\ \hline
+        $\int \cot x dx$ & $\ln |\sin x|$ \\ \hline
+        $\int \sec x dx$ & $\ln |\sec x + \tan x|$ \\ \hline
+        $\int \csc x dx$ & $\ln |\csc x - \cot x|$ \\ \hline
+        $\int \sec^2 x dx$ & $\tan x$ \\ \hline
+        $\int \csc^2 x dx$ & $\cot x$ \\ \hline
+        $\int \sin^n x dx$ & $\frac{-\sin^{n-1} x \cos x}{n} + \frac{n-1}{n}\int \sin^{n-2}x dx$ \\ \hline
+        $\int \cos^n x dx$ & $\frac{\cos^{n-1} x \sin x}{n} + \frac{n-1}{n}\int \cos^{n-2}x dx$ \\ \hline        
+        $\int \arcsin x dx$ & $x \arcsin x + \sqrt{1 - x^2}$ \\ \hline
+        $\int \arccos x dx$ & $x \arccos x - \sqrt{1 - x^2}$ \\ \hline
+        $\int \arctan x dx$ & $x \arctan x - \frac{1}{2} \ln |1 - x^2|$ \\ \hline
+      \end{tabular}
+
+    \subsection{Generating functions}
+      A list of generating functions for useful sequences:
+
+      \ 
+
+      \begin{tabular}{|c|c|}
+        \hline 
+        $(1,1,1,1,1,1,\ldots)$ & $\frac{1}{1-z}$ \\ \hline
+        $(1,-1,1,-1,1,-1,\ldots)$ & $\frac{1}{1+z}$ \\ \hline
+        $(1,0,1,0,1,0,\ldots)$ & $\frac{1}{1-z^2}$ \\ \hline        
+        $(1,0,\ldots,0,1,0,1,0,\ldots,0,1,0,\ldots)$ & $\frac{1}{1-z^2}$ \\ \hline
+        $(1,2,3,4,5,6,\ldots)$ & $\frac{1}{(1-z)^2}$ \\ \hline
+        $(1,\binom{m+1}{m},\binom{m+2}{m},\binom{m+3}{m},\ldots)$ & $\frac{1}{(1-z)^{m+1}}$ \\ \hline
+        $(1,c,\binom{c+1}{2},\binom{c+2}{3},\ldots)$ & $\frac{1}{(1-z)^c}$ \\ \hline    
+        $(1,c,c^2, c^3, \ldots)$ & $\frac{1}{1-cz}$ \\ \hline    
+        $(0,1,\frac{1}{2},\frac{1}{3},\frac{1}{4},\ldots)$ & $\ln \frac{1}{1-z}$ \\ \hline    
+      \end{tabular}      
+
+      \ 
+
+      A neat manipulation trick is:
+      \begin{equation*}
+        \frac{1}{1-z}G(z) = \sum_{n}\sum_{k\leq n}g_kz^n
+      \end{equation*}
+  \end{multicols}
 \end{document}
