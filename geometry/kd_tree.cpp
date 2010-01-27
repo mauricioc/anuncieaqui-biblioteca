@@ -32,7 +32,7 @@ int kd_query(int root, TYPE a, TYPE b, TYPE c, TYPE d, TYPE ca = -INF,
 
     if(tree[root] != -1)
         return a <= pts[tree[root]].x && pts[tree[root]].x <= b &&
-               c <= pts[tree[root]].y && pts[tree[root]].y <= d;
+	    c <= pts[tree[root]].y && pts[tree[root]].y <= d ? val[root] : 0;
 
     int ret = 0;
     if(x) {
