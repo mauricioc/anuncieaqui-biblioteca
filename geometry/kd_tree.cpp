@@ -1,10 +1,11 @@
-int tree[4*MAXSZ];
+int tree[4*MAXSZ], val[4*MAXSZ];
 TYPE split[4*MAXSZ];
 vector<pt> pts;
 
 void kd_recurse(int root, int left, int right, bool x) {
     if(left == right) {
         tree[root] = left;
+	val[root] = 1;
         return;
     }
 
@@ -15,6 +16,8 @@ void kd_recurse(int root, int left, int right, bool x) {
 
     kd_recurse(2*root+1, left, mid, !x);
     kd_recurse(2*root+2, mid+1, right, !x);
+
+    val[root] = val[2*root+1] + val[2*root+2];
 }
 
 void kd_build() {
@@ -22,17 +25,32 @@ void kd_build() {
     kd_recurse(0, 0, pts.size() - 1, true);
 }
 
-int kd_query(int root, int a, int b, int c, int d, bool x) {
+int kd_query(int root, TYPE a, TYPE b, TYPE c, TYPE d, TYPE ca = -INF, 
+	     TYPE cb = INF, TYPE cc = -INF, TYPE cd = INF, bool x) {
+    if(a <= ca && cb <= b && c <= cc && cd <= d)
+	return val[root];
+
     if(tree[root] != -1)
         return a <= pts[tree[root]].x && pts[tree[root]].x <= b &&
                c <= pts[tree[root]].y && pts[tree[root]].y <= d;
 
-    int ret = 0, l, r;
-    if(x) l = a, r = b;
-    else l = c, r = d;
-
-    if(l <= split[root]) ret += kd_query(2*root + 1, a, b, c, d, !x);
-    if(split[root] <= r) ret += kd_query(2*root + 2, a, b, c, d, !x);
+    int ret = 0;
+    if(x) {
+	if(a <= split[root]) 
+	    ret += kd_query(2*root + 1, a, b, c, d, 
+			    ca, min(cb, split[root]), cc, cd, !x);
+	if(split[root] <= b) 
+	    ret += kd_query(2*root + 2, a, b, c, d, 
+			    max(ca, split[root]), cb, cc, cd, !x);
+    }
+    else {
+	if(c <= split[root]) 
+	    ret += kd_query(2*root + 1, a, b, c, d, 
+			    ca, cb, cc, min(cd, split[root]), !x);
+	if(split[root] <= d) 
+	    ret += kd_query(2*root + 2, a, b, c, d, 
+			    ca, cb, max(cc, split[root]), cd, !x);
+    }
 
     return ret;
 }
