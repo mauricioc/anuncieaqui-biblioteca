@@ -47,9 +47,9 @@ void rt_build() {
 int rt_query(int root, int l, int r, TYPE a, TYPE b, TYPE c, TYPE d,
              int posl = -1, int posr = -1) {
     if(root == 0 && posl == -1) {
-        posl = lower_bound(tree[0].begin(), tree[0].end(), pt(-INF, c), compy)
+        posl = lower_bound(tree[0].begin(), tree[0].end(), pt(a, c), compy)
             - tree[0].begin();
-	posr = upper_bound(tree[0].begin(), tree[0].end(), pt(INF, d), compy)
+	posr = upper_bound(tree[0].begin(), tree[0].end(), pt(b, d), compy)
 	    - tree[0].begin();
     }
 

@@ -1,12 +1,7 @@
 (global-font-lock-mode t)
 (setq transient-mark-mode t)
-(require 'font-lock)
-(require 'paren)
 (global-set-key [f5] 'cxx-compile)
-(set-input-mode nil nil 1)
-(fset 'yes-or-no-p 'y-or-n-p)
 
-(require 'cc-mode)
 (defun cxx-compile()
   (interactive)
   (progn
