@@ -26,6 +26,6 @@ bool miller_rabin(int n, int base) {
     return false;
 }
 
-int isprime(int n) {
+bool isprime(int n) {
     return miller_rabin(n, 2) && miller_rabin(n, 7) && miller_rabin(n, 61);
 }

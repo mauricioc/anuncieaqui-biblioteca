@@ -196,6 +196,18 @@
         \frac{1}{1-z}G(z) = \sum_{n}\sum_{k\leq n}g_kz^n
       \end{equation*}
 
+    \subsection{Polyominoes} How many free (rotation, reflection), one-sided (rotation) and fixed $n$-ominoes are there?
+
+      \ 
+
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        n&3&4&5&6&7&8&9&10 \\ \hline
+        free&2&5&12&35&108&369&1.285&4.655 \\ \hline
+        one-sided&2&7&18&60&196&704&2.500&9.189 \\ \hline
+        fixed&6&19&63&216&760&2.725&9.910&36.446 \\ \hline
+      \end{tabular}
+
     \subsection{The twelvefold way (from Stanley)} How many functions $f \colon N \rightarrow X$ are there?
 
       \ 
@@ -213,8 +225,22 @@
 
       Where $\binom{a}{b} = \frac{1}{b!}(a)_b $ and $p_x(n)$ is the number of ways to partition the integer $n$ using $x$ summands.
 
+    \subsection{Common integral substitutions} And finally, a list of common substitutions:
+
+      \ 
+
+      \begin{tabular}{|c|c|c|}
+        \hline 
+        $\int F(\sqrt{ax + b}) dx$ & $u = \sqrt{ax + b}$ & $\frac{2}{a} \int u F(u) du$ \\ \hline
+        $\int F(\sqrt{a^2 - x^2}) dx$ & $x = a \sin u$ & $a \int F(a \cos u) \cos u du$ \\ \hline
+        $\int F(\sqrt{x^2 + a^2}) dx$ & $x = a \tan u$ & $a \int F(a \sec u) \sec^2 u du$ \\ \hline
+        $\int F(\sqrt{x^2 - a^2}) dx$ & $x = a \sec u$ & $a \int F(a \tan u) \sec u \tan u du$ \\ \hline
+        $\int F(e^{ax}) dx$ & $u = e^{ax}$ & $\frac{1}{a} \int \frac{F(u)}{u} du$ \\ \hline
+        $\int F(\ln x) dx$ & $u = \ln x$ & $\int F(u) e^u du$ \\ \hline
+      \end{tabular}
+
     \subsection{Table of non-trigonometric integrals}
-      Some  useful integrals are:
+      Some useful integrals are:
 
       \ 
       
@@ -248,20 +274,6 @@
         $\int \arcsin x dx$ & $x \arcsin x + \sqrt{1 - x^2}$ \\ \hline
         $\int \arccos x dx$ & $x \arccos x - \sqrt{1 - x^2}$ \\ \hline
         $\int \arctan x dx$ & $x \arctan x - \frac{1}{2} \ln |1 - x^2|$ \\ \hline
-      \end{tabular}
-
-    \subsection{Common substitutions} And finally, a list of common substitutions:
-
-      \ 
-
-      \begin{tabular}{|c|c|c|}
-        \hline 
-        $\int F(\sqrt{ax + b}) dx$ & $u = \sqrt{ax + b}$ & $\frac{2}{a} \int u F(u) du$ \\ \hline
-        $\int F(\sqrt{a^2 - x^2}) dx$ & $x = a \sin u$ & $a \int F(a \cos u) \cos u du$ \\ \hline
-        $\int F(\sqrt{x^2 + a^2}) dx$ & $x = a \tan u$ & $a \int F(a \sec u) \sec^2 u du$ \\ \hline
-        $\int F(\sqrt{x^2 - a^2}) dx$ & $x = a \sec u$ & $a \int F(a \tan u) \sec u \tan u du$ \\ \hline
-        $\int F(e^{ax}) dx$ & $u = e^{ax}$ & $\frac{1}{a} \int \frac{F(u)}{u} du$ \\ \hline
-        $\int F(\ln x) dx$ & $u = \ln x$ & $\int F(u) e^u du$ \\ \hline
       \end{tabular}
   \end{multicols}
 \end{document}
