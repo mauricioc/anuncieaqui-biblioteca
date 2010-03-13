@@ -39,24 +39,23 @@
 
 \newcommand{\stirlingfirst}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
 \newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
-\newenvironment{tablehere}{\def\@captype{table}}{}
 
 \begin{document}
   \thispagestyle{fancy}
   \begin{center}
-    \Huge\textsc{ACM ICPC Team Reference \\ 2010 World Finals}
-
-    \ 
+    \Huge\textsc{ACM ICPC Team Reference}
+  
+    \vspace{0.45cm}
 
     \huge Team Anuncie Aqui \\ Universidade Federal de Sergipe
- 
-    \ 
 
+    \vspace{0.45cm}
+ 
   \end{center}
 
-%  \begin{multicols}{2}
-%    \tableofcontents
-%  \end{multicols}
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}
 
   \section{Configuration files and scripts}
     \includefile{.emacs}{../config}{dotemacs}
@@ -66,9 +65,9 @@
 
   \section{Graph algorithms}
     \includefile{Tarjan's SCC algorithm}{../graph}{scc.cpp}
-    \includefile{Dinic's algorithm}{../graph}{dinic.cpp}
-    \includefile{Busacker-Gowen's algorithm}{../graph}{busacker_gowen.cpp}
-    \includefile{Gabow's algorithm}{../graph}{gabow.cpp}
+    \includefile{Dinic's maximum flow algorithm}{../graph}{dinic.cpp}
+    \includefile{Successive shortest paths mincost maxflow algorithm}{../graph}{busacker_gowen.cpp}
+    \includefile{Gabow's general matching algorithm}{../graph}{gabow.cpp}
 
   \section{Math}
     \includefile{Fractions}{../math}{frac.cpp}
