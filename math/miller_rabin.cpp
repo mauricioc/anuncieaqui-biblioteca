@@ -27,5 +27,6 @@ bool miller_rabin(int n, int base) {
 }
 
 bool isprime(int n) {
+    if(n == 2 || n == 7 || n == 61) return true;
     return miller_rabin(n, 2) && miller_rabin(n, 7) && miller_rabin(n, 61);
 }
