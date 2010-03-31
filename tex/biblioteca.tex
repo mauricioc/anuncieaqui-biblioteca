@@ -30,10 +30,17 @@
 \cfoot{}
 \rfoot{}
 
-\newcommand{\includefile}[3]{
+\newcommand{\includecpp}[3]{
   \begin{multicols}{2}
     [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
-    \lstinputlisting{#2/#3}
+    \lstinputlisting[language=c++]{#2/#3}
+  \end{multicols}
+}
+
+\newcommand{\includelisp}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
+    \lstinputlisting[language=lisp]{#2/#3}
   \end{multicols}
 }
 
@@ -54,48 +61,48 @@
   \end{center}
 
   \section{Configuration files and scripts}
-    \includefile{.emacs}{../config}{dotemacs}
-    \includefile{.vimrc}{../config}{dotvimrc}
-    \includefile{Hash generator}{../config}{hashgen}
-    \includefile{Solution template}{../config}{template.cpp}
+    \includelisp{.emacs}{../config}{dotemacs}
+    \includecpp{.vimrc}{../config}{dotvimrc}
+    \includecpp{Hash generator}{../config}{hashgen}
+    \includecpp{Solution template}{../config}{template.cpp}
 
   \section{Graph algorithms}
-    \includefile{Tarjan's SCC algorithm}{../graph}{scc.cpp}
-    \includefile{Dinic's maximum flow algorithm}{../graph}{dinic.cpp}
-    \includefile{Successive shortest paths mincost maxflow algorithm}{../graph}{busacker_gowen.cpp}
-    \includefile{Gabow's general matching algorithm}{../graph}{gabow.cpp}
+    \includecpp{Tarjan's SCC algorithm}{../graph}{scc.cpp}
+    \includecpp{Dinic's maximum flow algorithm}{../graph}{dinic.cpp}
+    \includecpp{Successive shortest paths mincost maxflow algorithm}{../graph}{busacker_gowen.cpp}
+    \includecpp{Gabow's general matching algorithm}{../graph}{gabow.cpp}
 
   \section{Math}
-    \includefile{Fractions}{../math}{frac.cpp}
-    \includefile{Chinese remainder theorem}{../math}{crt.cpp}
-    \includefile{Longest increasing subsequence}{../math}{lis.cpp}
-    \includefile{Simplex (Warsaw University)}{../math}{simplex.cpp}
-    \includefile{Romberg's method}{../math}{romberg.cpp}
-    \includefile{Floyd's cycle detection algorithm}{../math}{floyd.cpp}
-    \includefile{Pollard's rho algorithm}{../math}{pollard.cpp}
-    \includefile{Miller-Rabin's algorithm}{../math}{miller_rabin.cpp}
-    \includefile{Polynomials (PUC-Rio)}{../math}{polynomials.cpp}
+    \includecpp{Fractions}{../math}{frac.cpp}
+    \includecpp{Chinese remainder theorem}{../math}{crt.cpp}
+    \includecpp{Longest increasing subsequence}{../math}{lis.cpp}
+    \includecpp{Simplex (Warsaw University)}{../math}{simplex.cpp}
+    \includecpp{Romberg's method}{../math}{romberg.cpp}
+    \includecpp{Floyd's cycle detection algorithm}{../math}{floyd.cpp}
+    \includecpp{Pollard's rho algorithm}{../math}{pollard.cpp}
+    \includecpp{Miller-Rabin's algorithm}{../math}{miller_rabin.cpp}
+    \includecpp{Polynomials (PUC-Rio)}{../math}{polynomials.cpp}
 
   \section{Geometry}
-    \includefile{Point class}{../geometry}{point.cpp}
-    \includefile{Intersection primitives}{../geometry}{isect_primitives.cpp}
-    \includefile{Polygon primitives}{../geometry}{polygon_primitives.cpp}
-    \includefile{Miscellaneous primitives}{../geometry}{misc_primitives.cpp}
-    \includefile{Smallest enclosing circle}{../geometry}{enclosing_circle.cpp}
-    \includefile{Convex hull}{../geometry}{hull.cpp}
-    \includefile{Closest pair of points}{../geometry}{closest_points.cpp}
-    \includefile{Kd-tree}{../geometry}{kd_tree.cpp}
-    \includefile{Range tree}{../geometry}{range_tree.cpp}
+    \includecpp{Point class}{../geometry}{point.cpp}
+    \includecpp{Intersection primitives}{../geometry}{isect_primitives.cpp}
+    \includecpp{Polygon primitives}{../geometry}{polygon_primitives.cpp}
+    \includecpp{Miscellaneous primitives}{../geometry}{misc_primitives.cpp}
+    \includecpp{Smallest enclosing circle}{../geometry}{enclosing_circle.cpp}
+    \includecpp{Convex hull}{../geometry}{hull.cpp}
+    \includecpp{Closest pair of points}{../geometry}{closest_points.cpp}
+    \includecpp{Kd-tree}{../geometry}{kd_tree.cpp}
+    \includecpp{Range tree}{../geometry}{range_tree.cpp}
 
   \section{Data structures}
-    \includefile{Treap}{../structures}{treap.cpp}
-    \includefile{Heap}{../structures}{heap.cpp}
-    \includefile{Big numbers (PUC-Rio)}{../structures}{bignum.cpp}
+    \includecpp{Treap}{../structures}{treap.cpp}
+    \includecpp{Heap}{../structures}{heap.cpp}
+    \includecpp{Big numbers (PUC-Rio)}{../structures}{bignum.cpp}
 
   \section{String algorithms}
-    \includefile{Manber-Myers' algorithm}{../string}{manber_myers.cpp}
-    \includefile{Morris-Pratt's algorithm}{../string}{morris_pratt.cpp}
-    \includefile{Aho-Corasick's algorithm (UFPE)}{../string}{aho_corasick.cpp}
+    \includecpp{Manber-Myers' algorithm}{../string}{manber_myers.cpp}
+    \includecpp{Morris-Pratt's algorithm}{../string}{morris_pratt.cpp}
+    \includecpp{Aho-Corasick's algorithm (UFPE)}{../string}{aho_corasick.cpp}
 
   \enlargethispage*{\baselineskip}
   \pagebreak

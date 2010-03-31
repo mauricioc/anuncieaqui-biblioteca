@@ -1,14 +1,13 @@
 (global-font-lock-mode t)
 (setq transient-mark-mode t)
-(global-set-key [f5] 'cxx-compile)
 
+(global-set-key [f5] 'cxx-compile)
+(require 'cc-mode)
 (defun cxx-compile()
   (interactive)
-  (progn
-    (save-buffer)
-    (compile (concat "g++ -g -O2 -o " (substring buffer-file-name 0 -4)
-              buffer-file-name))
-  )
+  (save-buffer)
+  (compile (concat "g++ -g -o " (file-name-sans-extension buffer-file-name)
+                   " " buffer-file-name))
 )
 
 (add-hook 'c++-mode-hook '(lambda () (c-set-style "stroustrup")))
