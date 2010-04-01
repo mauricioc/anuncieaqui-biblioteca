@@ -6,7 +6,7 @@
 (defun cxx-compile()
   (interactive)
   (save-buffer)
-  (compile (concat "g++ -g -o " (file-name-sans-extension buffer-file-name)
+  (compile (concat "g++ -g -O2 -o " (file-name-sans-extension buffer-file-name)
                    " " buffer-file-name))
 )
 
