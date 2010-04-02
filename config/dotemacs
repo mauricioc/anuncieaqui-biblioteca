@@ -2,7 +2,6 @@
 (setq transient-mark-mode t)
 
 (global-set-key [f5] 'cxx-compile)
-(require 'cc-mode)
 (defun cxx-compile()
   (interactive)
   (save-buffer)
