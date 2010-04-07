@@ -49,7 +49,7 @@ void bg_dijkstra(int s, int num_nodes = MAXV) {
 }
 
 pair<int, int> busacker_gowen(int src, int sink, int num_nodes = MAXV) {
-    int retFlow = 0, retCost = 0;
+    int ret_flow = 0, ret_cost = 0;
 
     bg_dijkstra(src, num_nodes);
     while(dist[sink] < 0x3f3f3f3f) {
@@ -57,15 +57,15 @@ pair<int, int> busacker_gowen(int src, int sink, int num_nodes = MAXV) {
         while(cur != src) {
             flow[bg_prev[cur]] -= capres[sink];
             flow[rev(bg_prev[cur])] += capres[sink];
-            retCost += cost[rev(bg_prev[cur])] * capres[sink];
+            ret_cost += cost[rev(bg_prev[cur])] * capres[sink];
             cur = adj[bg_prev[cur]];
         }
-        retFlow += capres[sink];
+        ret_flow += capres[sink];
 
-        for(int i = 0; i < MAXV; i++)
+        for(int i = 0; i < MAXV; ++i)
             pot[i] = min(pot[i] + dist[i], 0x3f3f3f3f);
 
         bg_dijkstra(src, num_nodes);
     }
-    return make_pair(retFlow, retCost);
+    return make_pair(ret_flow, ret_cost);
 }

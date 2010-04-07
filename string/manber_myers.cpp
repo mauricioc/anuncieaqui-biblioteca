@@ -5,7 +5,7 @@ int mm_segtree[4*MAXSZ];
 string mm_s;
 
 inline void regen_pos(int sz) {
-    for(int i = 0; i < sz; i++)
+    for(int i = 0; i < sz; ++i)
         pos[prm[i]] = i;
 }
 
@@ -13,7 +13,7 @@ inline void bubbleupbucket(int index) {
     if(index < 0) return;
 
     int& prm_ext = prm[index];
-    cnt[prm_ext]++;
+    ++cnt[prm_ext];
     prm_ext += cnt[prm_ext] - 1;
     b2h[prm_ext] = true;
 }
@@ -47,12 +47,12 @@ void mm_build(string s) {
     memset(mm_segtree, 0x3f, sizeof(int) * 4 * s.size());
     updatetree(0, 0, s.size() - 1, s.size() - 1, 0);
 
-    for(int i = 0; i < s.size(); i++) {
+    for(int i = 0; i < s.size(); ++i) {
         bprev[i] = blast[s[i]];
         blast[s[i]] = i;
     }
     int let_count = 0;
-    for(int i = 0; i < 256; i++) {
+    for(int i = 0; i < 256; ++i) {
         if(blast[i] != -1) {
             bh[let_count] = true;
             if(let_count > 0)
@@ -69,26 +69,26 @@ void mm_build(string s) {
         memset(b2h, 0, sizeof(bool) * s.size());
 
         for(int bl = 0, br = 0; br < s.size(); bl = br++)
-            for(; !bh[br]; br++)
+            for(; !bh[br]; ++br)
                 prm[pos[br]] = bl;
 
         bubbleupbucket(s.size() - st);
         for(int bl = 0, br = 0; br < s.size(); bl = br) {
             bubbleupbucket(pos[bl] - st);
-            for(br++; !bh[br]; br++)
+            for(++br; !bh[br]; ++br)
                 bubbleupbucket(pos[br] - st);
 
-            for(int i = bl; i < br; i++) {
+            for(int i = bl; i < br; ++i) {
                 if(pos[i] - st < 0) continue;
                 int prm_ext = prm[pos[i] - st];
                 if(b2h[prm_ext])
-                    for(int j = prm_ext + 1; !bh[j] && b2h[j]; j++)
+                    for(int j = prm_ext + 1; !bh[j] && b2h[j]; ++j)
                         b2h[j] = false;
             }
         }
 
         regen_pos(s.size());
-        for(int i = 0; i < s.size(); i++)
+        for(int i = 0; i < s.size(); ++i)
             if(!bh[i] && b2h[i]) {
                 bh[i] = true;
                 if(pos[i - 1] + st < s.size() && pos[i] + st < s.size()) {
@@ -105,7 +105,7 @@ void mm_build(string s) {
 
 inline int lcp(string& s1, int p1, string& s2, int p2) {
     int limit = min(s1.size() - p1, s2.size() - p2), i;
-    for(i = 0; i < limit; i++) if(s1[p1 + i] != s2[p2 + i]) break;
+    for(i = 0; i < limit; ++i) if(s1[p1 + i] != s2[p2 + i]) break;
     return i;
 }
 

@@ -52,7 +52,7 @@ int gabow(int n) {
     memset(first, -1, sizeof first);
 
     int u = 0, ret = 0;
-    for(int z = 0; z < n; z++) {
+    for(int z = 0; z < n; ++z) {
         if(mate[z] != -1) continue;
 
         memset(label, -1, sizeof label);
@@ -75,7 +75,7 @@ int gabow(int n) {
                 if(mate[w[i]] == -1 && w[i] != z) {
                     mate[w[i]] = x;
                     g_augment(x, w[i]);
-                    ret++;
+                    ++ret;
 
                     done = true;
                     break;
@@ -108,7 +108,7 @@ int gabow(int n) {
                 g_label(first[x], r, i, outer);
                 g_label(first[w[i]], r, i, outer);
 
-                for(int c = 0; c < n; c++)
+                for(int c = 0; c < n; ++c)
                     if(type[c] != -1 && first[c] != -1 && type[first[c]] != -1)
                         first[c] = r;
             }

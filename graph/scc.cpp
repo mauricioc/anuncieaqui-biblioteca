@@ -32,7 +32,7 @@ int tarjan_dfs(int v) {
             visited[last] = 2;
             visiting.pop();
         }
-        cur_comp++;
+        ++cur_comp;
     }
 
     return lowest[v];
@@ -43,7 +43,7 @@ void tarjan_scc(int num_v = MAXV) {
     memset(visited, 0, sizeof visited);
     cur_num = cur_comp = 0;
 
-    for(int i = 0; i < num_v; i++)
+    for(int i = 0; i < num_v; ++i)
         if(!visited[i])
             tarjan_dfs(i);
 }

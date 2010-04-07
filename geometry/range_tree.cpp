@@ -6,7 +6,7 @@ int rt_recurse(int root, int left, int right) {
     if(left == right) {
         vector<pt>::iterator it;
         it = lower_bound(pts.begin(), pts.end(), pt(xs[left], -INF));
-        for(; it != pts.end() && it->x == xs[left]; it++)
+        for(; it != pts.end() && it->x == xs[left]; ++it)
             tree[root].push_back(*it);
 
         sort(tree[root].begin(), tree[root].end(), compy);
@@ -24,9 +24,9 @@ int rt_recurse(int root, int left, int right) {
         else tree[root].push_back(last = tree[cr][r++]);
 
         while(llink < tree[cl].size() && compy(tree[cl][llink], last))
-            llink++;
+            ++llink;
         while(rlink < tree[cr].size() && compy(tree[cr][rlink], last))
-            rlink++;
+            ++rlink;
 
         lnk[root][0].push_back(llink);
         lnk[root][1].push_back(rlink);
@@ -40,7 +40,7 @@ int rt_recurse(int root, int left, int right) {
 
 void rt_build() {
     sort(pts.begin(), pts.end());
-    for(int i = 0; i < pts.size(); i++) xs.push_back(pts[i].x);
+    for(int i = 0; i < pts.size(); ++i) xs.push_back(pts[i].x);
     rt_recurse(0, 0, xs.size() - 1);
 }
 

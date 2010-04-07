@@ -10,7 +10,7 @@ vector<pt> hull(vector<pt> pts) {
     vector<pt> ret;
 
     int mini = 0;
-    for(int i = 1; i < pts.size(); i++)
+    for(int i = 1; i < pts.size(); ++i)
         if(pts[i] < pts[mini])
             mini = i;
 
@@ -22,10 +22,10 @@ vector<pt> hull(vector<pt> pts) {
     ret.push_back(pts[1]);
     int sz = 2;
 
-    for(int i = 2; i < pts.size(); i++) {
+    for(int i = 2; i < pts.size(); ++i) {
         while(sz >= 2 && ccw(ret[sz-2], ret[sz-1], pts[i]) <= 0)
-            ret.pop_back(), sz--;
-        ret.push_back(pts[i]), sz++;
+            ret.pop_back(), --sz;
+        ret.push_back(pts[i]), ++sz;
     }
 
     return ret;

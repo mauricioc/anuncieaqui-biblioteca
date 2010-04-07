@@ -3,7 +3,7 @@ vector<int> lis(vector<int>& seq) {
     smallest_end[1] = seq[0];
 
     int sz = 1;
-    for(int i = 1; i < seq.size(); i++) {
+    for(int i = 1; i < seq.size(); ++i) {
         int lo = 0, hi = sz;
         while(lo < hi) {
             int mid = (lo + hi + 1)/2;
@@ -21,7 +21,7 @@ vector<int> lis(vector<int>& seq) {
     }
 
     vector<int> ret;
-    for(int cur = smallest_end[sz]; sz > 0; cur = prev[cur], sz--)
+    for(int cur = smallest_end[sz]; sz > 0; cur = prev[cur], --sz)
         ret.push_back(seq[cur]);
     reverse(ret.begin(), ret.end());
 

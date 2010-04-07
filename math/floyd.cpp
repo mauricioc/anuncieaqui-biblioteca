@@ -5,11 +5,11 @@ pair<int, int> floyd(int x0) {
 
     h = t; t = x0;
     while(t != h) 
-	t = f(t), h = f(h), start++;
+	t = f(t), h = f(h), ++start;
 
     h = f(t);
     while(t != h) 
-	h = f(h), length++;
+	h = f(h), ++length;
 
     return make_pair(start, length);
 }
