@@ -49,20 +49,20 @@ int rt_query(int root, int l, int r, TYPE a, TYPE b, TYPE c, TYPE d,
     if(root == 0 && posl == -1) {
         posl = lower_bound(tree[0].begin(), tree[0].end(), pt(a, c), compy)
             - tree[0].begin();
-	posr = upper_bound(tree[0].begin(), tree[0].end(), pt(b, d), compy)
-	    - tree[0].begin();
+        posr = upper_bound(tree[0].begin(), tree[0].end(), pt(b, d), compy)
+            - tree[0].begin();
     }
 
     if(a <= xs[l] && xs[r] <= b)
-	return posr - posl;
+        return posr - posl;
     if(posl >= tree[root].size()) return 0;
 
     int mid = (l + r)/2, ret = 0;
     if(a <= xs[mid])
-        ret += rt_query(2*root+1, l, mid, a, b, c, d, 
-			lnk[root][0][posl], lnk[root][0][posr]);
+        ret += rt_query(2*root+1, l, mid, a, b, c, d,
+                        lnk[root][0][posl], lnk[root][0][posr]);
     if(xs[mid+1] <= b)
-        ret += rt_query(2*root+2, mid+1, r, a, b, c, d, 
-			lnk[root][1][posl], lnk[root][1][posr]);
+        ret += rt_query(2*root+2, mid+1, r, a, b, c, d,
+                        lnk[root][1][posl], lnk[root][1][posr]);
     return ret;
 }

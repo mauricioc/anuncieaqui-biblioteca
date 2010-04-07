@@ -25,12 +25,12 @@ void inic() {
 void adicionar(char *padrao) {
     int no = 0, len = 0;
     for (int i = 0 ; padrao[i] ; i++, len++) {
-	if (arvore[no].lista.find(padrao[i]) == arvore[no].lista.end()) {
-	    arvore[qtdNos].lista.clear(); arvore[qtdNos].out.clear();
-	    //arvore[qtdNos].marc = false; // p/ decisao
-	    arvore[no].lista[padrao[i]] = qtdNos;
-	    no = qtdNos++;
-	} else no = arvore[no].lista[padrao[i]];
+        if (arvore[no].lista.find(padrao[i]) == arvore[no].lista.end()) {
+            arvore[qtdNos].lista.clear(); arvore[qtdNos].out.clear();
+            //arvore[qtdNos].marc = false; // p/ decisao
+            arvore[no].lista[padrao[i]] = qtdNos;
+            no = qtdNos++;
+        } else no = arvore[no].lista[padrao[i]];
     }
     arvore[no].out.push_back(pair<int,int>(qtdPadroes++,len));
 }
@@ -39,28 +39,28 @@ void adicionar(char *padrao) {
 void ativar() {
     int no,v,f,w;
     queue<int> fila;
-    for (map<char,int>::iterator it = arvore[0].lista.begin(); 
-	 it != arvore[0].lista.end() ; it++) {
-	arvore[no = it->second].fail = 0;
-	arvore[no].next = arvore[0].out.size() ? 0 : -1;
-	fila.push(no);
+    for (map<char,int>::iterator it = arvore[0].lista.begin();
+         it != arvore[0].lista.end() ; it++) {
+        arvore[no = it->second].fail = 0;
+        arvore[no].next = arvore[0].out.size() ? 0 : -1;
+        fila.push(no);
     }
     while (!fila.empty()) {
-	no = fila.front(); fila.pop();
-	for (map<char,int>::iterator it=arvore[no].lista.begin();
-	     it!=arvore[no].lista.end(); it++) {
-	    char c = it->first;
-	    v = it->second;
-	    fila.push(v);
-	    f = arvore[no].fail;
-	    while (arvore[f].lista.find(c) == arvore[f].lista.end()) {
-		if (f == 0) { arvore[0].lista[c] = 0; break; }
-		f = arvore[f].fail;
-	    }
-	    w = arvore[f].lista[c];
-	    arvore[v].fail = w;
-	    arvore[v].next = arvore[w].out.size() ? w : arvore[w].next;
-	}
+        no = fila.front(); fila.pop();
+        for (map<char,int>::iterator it=arvore[no].lista.begin();
+             it!=arvore[no].lista.end(); it++) {
+            char c = it->first;
+            v = it->second;
+            fila.push(v);
+            f = arvore[no].fail;
+            while (arvore[f].lista.find(c) == arvore[f].lista.end()) {
+                if (f == 0) { arvore[0].lista[c] = 0; break; }
+                f = arvore[f].fail;
+            }
+            w = arvore[f].lista[c];
+            arvore[v].fail = w;
+            arvore[v].next = arvore[w].out.size() ? w : arvore[w].next;
+        }
     }
 }
 
@@ -68,22 +68,22 @@ void ativar() {
 void buscar(char *input) {
     int v, no = 0;
     for (int i = 0 ; input[i] ; i++) {
-	while (arvore[no].lista.find(input[i]) == arvore[no].lista.end()) {
-	    if (no == 0) { arvore[0].lista[input[i]] = 0; break; }
-	    no = arvore[no].fail;
-	}
-	v = no = arvore[no].lista[input[i]];
-	// marcar os encontrados
-	while (v != -1 /* && !arvore[v].marc */ ) { // p/ decisao
-	    //arvore[v].marc = true; // p/ decisao: nao continua a lista
-	    for (int k = 0 ; k < arvore[v].out.size() ; k++) {
-		//encontrado[arvore[v].out[k].first] = true; // p/ decisao
-		printf("Padrao %d na posicao %d\n", arvore[v].out[k].first, 
-		       i-arvore[v].out[k].second+1);
-	    }
-	    v = arvore[v].next;
-	}
+        while (arvore[no].lista.find(input[i]) == arvore[no].lista.end()) {
+            if (no == 0) { arvore[0].lista[input[i]] = 0; break; }
+            no = arvore[no].fail;
+        }
+        v = no = arvore[no].lista[input[i]];
+        // marcar os encontrados
+        while (v != -1 /* && !arvore[v].marc */ ) { // p/ decisao
+            //arvore[v].marc = true; // p/ decisao: nao continua a lista
+            for (int k = 0 ; k < arvore[v].out.size() ; k++) {
+                //encontrado[arvore[v].out[k].first] = true; // p/ decisao
+                printf("Padrao %d na posicao %d\n", arvore[v].out[k].first,
+                       i-arvore[v].out[k].second+1);
+            }
+            v = arvore[v].next;
+        }
     }
-    // for (int i = 0 ; i < qtdPadroes ; i++) 
+    // for (int i = 0 ; i < qtdPadroes ; i++)
     //printf("%s\n", encontrado[i]?"y":"n"); // p/ decisao
 }
