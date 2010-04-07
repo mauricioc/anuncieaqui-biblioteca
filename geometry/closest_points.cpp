@@ -39,7 +39,7 @@ pair<pt, pt> closest_points_rec(vector<pt>& px, vector<pt>& py) {
 	    s.push_back(py[i]);
 
     for(int i = 0; i < s.size(); ++i)
-	for(int j = 1; j <= 15 && i + j < s.size(); ++j)
+	for(int j = 1; j <= 7 && i + j < s.size(); ++j)
 	    if((d = dist(s[i], s[i+j])) < delta) {
 		delta = d;
 		ret = make_pair(s[i], s[i+j]);
