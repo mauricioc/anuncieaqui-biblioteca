@@ -12,7 +12,7 @@ int point_polygon(pt p, vector<pt>& pol) {
         int i1 = g_mod(i+1, n);
         if (ps_isects(pol[i], pol[i1], p)) return -1;
         else if(((sgn(pol[i].y - p.y) == 1) != (sgn(pol[i1].y - p.y) == 1)) &&
-           ccw(pol[i], p, pol[i1]) == sgn(pol[i].y - pol[i1].y)) ++count;
+                ccw(pol[i], p, pol[i1]) == sgn(pol[i].y - pol[i1].y)) ++count;
     }
     return count % 2;
 }

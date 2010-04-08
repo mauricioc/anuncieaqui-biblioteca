@@ -43,8 +43,8 @@ struct heap {
     void decrease_key(int vertex, int new_value) __attribute__((always_inline))
     {
         if(v2n[vertex] == -1) {
-          v2n[vertex] = size;
-          heap[size++][1] = vertex;
+            v2n[vertex] = size;
+            heap[size++][1] = vertex;
         }
 
         heap[v2n[vertex]][0] = new_value;

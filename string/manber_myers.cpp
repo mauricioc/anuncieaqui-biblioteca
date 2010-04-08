@@ -95,7 +95,7 @@ void mm_build(string s) {
                     int m = min(prm[pos[i - 1] + st], prm[pos[i] + st]);
                     int M = max(prm[pos[i - 1] + st], prm[pos[i] + st]);
                     updatetree(0, 0, s.size() - 1, i - 1,
-                                  st + querytree(0, 0, s.size() - 1, m, M - 1));
+                               st + querytree(0, 0, s.size() - 1, m, M - 1));
                 }
                 else
                     updatetree(0, 0, s.size() - 1, i - 1, st);
