@@ -16,7 +16,7 @@ void morris_pratt(string text, string pattern) {
             k = pi[k];
         if(pattern[k + 1] == text[i]) ++k;
         if(k + 1 == pattern.size()) {
-            res[nres++] = i;
+            res[nres++] = i - k;
             k = pi[k];
         }
     }
