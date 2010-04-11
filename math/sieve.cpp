@@ -16,13 +16,13 @@ void sieve() {
 
     memset(notprime, 0, sizeof notprime);
     for(unsigned i = 0; i < MAX; i++)
-        for(unsigned j = (i==0); j < 16; j++) {
+        for(int j = (i==0); j < 16; j++) {
             if(notprime[i] & (1<<j)) continue;
             primes.push_back(60*i + w[j]);
 
             if(i > MAX_S) continue;
             for(unsigned k = i, done = false; !done; k++)
-                for(unsigned l = 0; l < 16 && !done; l++) {
+                for(int l = 0; l < 16 && !done; l++) {
                     unsigned mult = 60*i*k + i*w[l] + k*w[j] + di[j][l];
                     if(mult >= MAX) done = true;
                     else notprime[mult] |= 1<<mod[j][l];
