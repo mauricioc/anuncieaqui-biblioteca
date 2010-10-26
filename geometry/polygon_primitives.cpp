@@ -1,4 +1,4 @@
-double p_area(vector<pt>& pol) {
+double p_signedarea(vector<pt>& pol) {
     double ret = 0;
     for(int i = 0; i < pol.size(); ++i)
         ret += pol[i] % pol[g_mod(i+1, pol.size())];
