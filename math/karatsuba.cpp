@@ -1,6 +1,6 @@
 typedef vector<int> poly;
 
-poly mult(poly p, poly q) {
+poly mult(const poly& p, const poly& q) {
     int sz = p.size(), half = sz/2;
     assert(sz == q.size() && !(sz&(sz-1)));
 
