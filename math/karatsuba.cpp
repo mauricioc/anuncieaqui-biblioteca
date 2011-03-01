@@ -4,7 +4,7 @@ poly mult(poly p, poly q) {
     int sz = p.size(), half = sz/2;
     assert(sz == q.size() && !(sz&(sz-1)));
 
-    if(sz <= 128) {
+    if(sz <= 64) {
         poly ret(2*sz);
         for(int i = 0; i < sz; i++)
             for(int j = 0; j < sz; j++)
