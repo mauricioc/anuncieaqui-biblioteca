@@ -1,11 +1,13 @@
 #include <queue>
 #include <map>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
 #define MAXV 500
 #define MAXE 500*500
+
 #include "../graph/edmonds_karp.cpp"
 
 int main()
@@ -13,7 +15,7 @@ int main()
     int n; cin >> n; string str;
     for(int z = 0; z < n; z++)
     {
-        init_graph();
+        ek_init();
 
         int onibus, pessoas; cin >> pessoas >> onibus;
         map<string, vector<int> > bus2ind; int ind = 0;
@@ -26,17 +28,17 @@ int main()
         for(int i = 0; i < pessoas; i++)
         {
             int k; cin >> k;
-            aresta(0, i + 1, 1);
+            ek_edge(0, i + 1, 1);
             for(int j = 0; j < k; j++)
             {
                 cin >> str;
                 for(int l = 0; l < (int)bus2ind[str].size(); l++)
-                    aresta(i + 1, pessoas + 1 + bus2ind[str][l], 1);
+                    ek_edge(i + 1, pessoas + 1 + bus2ind[str][l], 1);
             }
         }
 
         for(int i = 0; i < onibus; i++)
-            aresta(pessoas + 1 + i, pessoas + onibus + 1, 1);
+            ek_edge(pessoas + 1 + i, pessoas + onibus + 1, 1);
 
         int cur_flow = 0;
         for(int i = 1; i <= 100; i++)

@@ -1,14 +1,17 @@
-#define MAXE 100052
-#define MAXV 105000
-#include "../graph/dijkstra_sparse_small.cpp"
-
 #include <queue>
 #include <iostream>
 #include <string>
 #include <map>
 #include <cstring>
+#include <utility>
 
 using namespace std;
+
+#define MAXE 100052
+#define MAXV 105000
+
+
+#include "../graph/dijkstra_sparse_small.cpp"
 
 map<string, int> idiomas; int numIdiomas;
 int cod(string s)
@@ -62,16 +65,16 @@ int main()
             for(int c = 0; c < 26; c++)
                 if(c != atual.c - 'a')
                 {
-                    aresta(atual.orig*26 + c, atual.dest*26 + (atual.c - 'a'), (*it).second);
-                    aresta(atual.dest*26 + c, atual.orig*26 + (atual.c - 'a'), (*it).second);
+                    d_edge(atual.orig*26 + c, atual.dest*26 + (atual.c - 'a'), (*it).second);
+                    d_edge(atual.dest*26 + c, atual.orig*26 + (atual.c - 'a'), (*it).second);
                 }
         }
 
         int source = numIdiomas * 26, sink = numIdiomas * 26 + 1;
         for(int i = 0; i < 26; i++)
         {
-            aresta(source, corigem * 26 + i, 0);
-            aresta(cdestino * 26 + i, sink, 0);
+            d_edge(source, corigem * 26 + i, 0);
+            d_edge(cdestino * 26 + i, sink, 0);
         }
 
         dijkstra(source, numIdiomas * 26 + 2);
