@@ -1,4 +1,4 @@
-FILES = .dotemacs.hash .hashgen.hash .template.cpp.hash .dotvimrc.hash
+FILES = .dotemacs.hash .hashgen.hash .template.cpp.hash .dotvimrc.hash .flymake.mk.hash
 
 all: $(FILES)
 

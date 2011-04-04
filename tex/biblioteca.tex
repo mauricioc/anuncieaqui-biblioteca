@@ -44,6 +44,13 @@
   \end{multicols}
 }
 
+\newcommand{\includemake}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}{Hash: \input{#2/.#3.hash}}\ ]
+    \lstinputlisting[language=make]{#2/#3}
+  \end{multicols}
+}
+
 \newcommand{\stirlingfirst}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
 \newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
 
@@ -62,6 +69,7 @@
 
   \section{Configuration files and scripts}
     \includelisp{.emacs}{../config}{dotemacs}
+    \includelisp{Makefile}{../config}{flymake.mk}
     \includecpp{.vimrc}{../config}{dotvimrc}
     \includecpp{Hash generator}{../config}{hashgen}
     \includecpp{Solution template}{../config}{template.cpp}
