@@ -9,13 +9,5 @@
                    " " buffer-file-name))
   )
 
-(defun my-flymake-sne()
-  (interactive)
-  (flymake-goto-next-error)
-  (flymake-display-err-menu-for-current-line)
-  )
-
-(global-set-key "\C-c\C-v" 'my-flymake-sne)
-
 (add-hook 'c++-mode-hook (lambda () (c-set-style "stroustrup")
                                     (flymake-mode t)))
