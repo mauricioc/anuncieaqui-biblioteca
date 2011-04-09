@@ -13,7 +13,7 @@ inline void bg_edge(int v, int w, int capacity, int cst, bool r = false) {
     cost[nedges] = cst;
     last_edge[v] = nedges++;
 
-    if(!r) bg_edge(w, v, 0, -cost, true);
+    if(!r) bg_edge(w, v, 0, -cst, true);
 }
 
 inline int rev(int i) { return i ^ 1; }
