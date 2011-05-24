@@ -1,4 +1,4 @@
-FILES = .manber_myers.cpp.hash .morris_pratt.cpp.hash .aho_corasick.cpp.hash
+FILES = .karkkainen.cpp.hash .morris_pratt.cpp.hash .aho_corasick.cpp.hash
 
 all: $(FILES)
 
