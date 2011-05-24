@@ -2,7 +2,7 @@ bool k_cmp(int a1, int b1, int a2, int b2, int a3 = 0, int b3 = 0) {
     return a1 != b1 ? a1 < b1 : (a2 != b2 ? a2 < b2 : a3 < b3);
 }
 
-int bucket[MAXSZ+3], tmp[MAXSZ+3];
+int bucket[MAXSZ+1], tmp[MAXSZ];
 template<class T> void k_radix(T keys, int *in, int *out,
                                int off, int n, int k) {
     memset(bucket, 0, sizeof(int) * (k+1));
@@ -15,7 +15,7 @@ template<class T> void k_radix(T keys, int *in, int *out,
         out[bucket[keys[in[j]+off]]++] = in[j];
 }
 
-int mod0[MAXSZ/3+10];
+int mod0[MAXSZ/3+1];
 vector<int> k_rec(const vector<int>& v, int k) {
     int n = v.size()-3, sz = (n+2)/3, sz2 = sz + n/3;
     if(n < 2) return vector<int>(n);
