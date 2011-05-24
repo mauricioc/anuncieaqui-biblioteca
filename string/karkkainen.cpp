@@ -92,7 +92,7 @@ vector<int> lcp(const string& s, const vector<int>& sa) {
     for(int h = 0, i = 0; i < n; i++)
         if(prm[i]) {
             int j = sa[prm[i]-1], ij = max(i, j);
-            while(ij + h < (int)s.size() && s[i+h] == s[j+h]) h++;
+            while(ij + h < n && s[i+h] == s[j+h]) h++;
             ans[prm[i]-1] = h;
             if(h) h--;
         }
