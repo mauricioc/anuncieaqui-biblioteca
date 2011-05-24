@@ -72,7 +72,7 @@ vector<int> k_rec(const vector<int>& v, int k) {
     return rec;
 }
 
-vector<int> karkkainen(string s) {
+vector<int> karkkainen(const string& s) {
     int n = s.size(), cnt = 1;
     vector<int> v(n + 3);
 
