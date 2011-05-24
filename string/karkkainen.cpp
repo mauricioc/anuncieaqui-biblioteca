@@ -42,10 +42,10 @@ vector<int> k_rec(const vector<int>& v, int k) {
     vector<int> rec;
     if(unique < sz2) {
         rec = k_rec(sub, unique);
-        rec.resize(n);
+        rec.resize(sz2+sz);
         for(int i = 0; i < sz2; i++) sub[rec[i]] = i+1;
     } else {
-        rec.resize(n);
+        rec.resize(sz2+sz);
         for(int i = 0; i < sz2; i++) rec[sub[i]-1] = i;
     }
 
@@ -56,8 +56,8 @@ vector<int> k_rec(const vector<int>& v, int k) {
     for(int i = 0; i < sz2; i++)
         rec[i] = rec[i] < sz ? 3*rec[i] + 1 : 3*(rec[i] - sz) + 2;
 
-    int prec = sz2-1, pmod0 = sz-1, pret = n-1, srec = n%3==1;
-    while(prec >= srec && pmod0 >= 0)
+    int prec = sz2-1, pmod0 = sz-1, pret = sz2+sz-1;
+    while(prec >= 0 && pmod0 >= 0)
         if(rec[prec]%3 == 1 && k_cmp(v[mod0[pmod0]], v[rec[prec]],
                                      sub[mod0[pmod0]/3], sub[rec[prec]/3+sz]) ||
            rec[prec]%3 == 2 && k_cmp(v[mod0[pmod0]], v[rec[prec]],
