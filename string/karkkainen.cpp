@@ -68,6 +68,7 @@ vector<int> k_rec(const vector<int>& v, int k) {
             rec[pret--] = mod0[pmod0--];
     if(pmod0 >= 0) memcpy(&rec[0], mod0, sizeof(int) * (pmod0+1));
 
+    if(n%3==1) rec.erase(rec.begin());
     return rec;
 }
 
