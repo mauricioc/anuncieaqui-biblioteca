@@ -1,7 +1,7 @@
 struct frac {
     long long num, den;
 
-    frac() : num(0), den(1) { };
+    frac() : num(0), den(1) { }
     frac(long long num, long long den = 1) { set_val(num, den); }
 
     void set_val(long long _num, long long _den) {
