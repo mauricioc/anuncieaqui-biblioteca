@@ -1,3 +1,9 @@
+typedef double TYPE;
+const TYPE EPS = 1e-9, INF = 1e9;
+
+inline int sgn(TYPE a) { return a > EPS ? 1 : (a < -EPS ? -1 : 0); }
+inline int cmp(TYPE a, TYPE b) { return sgn(a - b); }
+
 struct pt {
     TYPE x, y;
     pt(TYPE x = 0, TYPE y = 0) : x(x), y(y) { }
