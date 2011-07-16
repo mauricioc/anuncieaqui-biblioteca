@@ -1,7 +1,7 @@
 const unsigned MAX = 1000000020/60, MAX_S = sqrt(MAX/60);
 
 unsigned w[16] = {1, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 49, 53, 59};
-unsigned short notprime[MAX];
+unsigned short composite[MAX];
 vector<int> primes;
 
 void sieve() {
@@ -14,18 +14,18 @@ void sieve() {
 
     primes.push_back(2); primes.push_back(3); primes.push_back(5);
 
-    memset(notprime, 0, sizeof notprime);
+    memset(composite, 0, sizeof composite);
     for(unsigned i = 0; i < MAX; i++)
         for(int j = (i==0); j < 16; j++) {
-            if(notprime[i] & (1<<j)) continue;
+            if(composite[i] & (1<<j)) continue;
             primes.push_back(num = 60*i + w[j]);
 
             if(i > MAX_S) continue;
             for(unsigned k = i, done = false; !done; k++)
-                for(int l = 0; l < 16 && !done; l++) {
+                for(int l = (k==0); l < 16 && !done; l++) {
                     unsigned mult = k*num + i*w[l] + di[j][l];
                     if(mult >= MAX) done = true;
-                    else notprime[mult] |= 1<<mod[j][l];
+                    else composite[mult] |= 1<<mod[j][l];
                 }
         }
 }
