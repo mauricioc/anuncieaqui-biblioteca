@@ -8,6 +8,6 @@ tests/babel_stl$
 tests/marques.out
 tests/marques$
 tests/a.out
-tex/biblioteca.aux
-tex/biblioteca.log
-tex/biblioteca.toc
+tex/.*\.aux
+tex/.*\.log
+tex/.*\.toc
