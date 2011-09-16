@@ -1,8 +1,6 @@
 struct frac {
     long long num, den;
-
-    frac() : num(0), den(1) { }
-    frac(long long num, long long den = 1) { set_val(num, den); }
+    frac(long long num = 0, long long den = 1) { set_val(num, den); }
 
     void set_val(long long _num, long long _den) {
         num = _num/__gcd(_num, _den);
@@ -26,7 +24,7 @@ frac operator/(frac a, frac b) { frac ret = a; ret /= b; return ret; }
 frac operator*(frac a, frac b) { frac ret = a; ret *= b; return ret; }
 frac operator+(frac a, frac b) { frac ret = a; ret += b; return ret; }
 frac operator-(frac a, frac b) { frac ret = a; ret -= b; return ret; }
-frac operator-(frac f) { return 0 - f; }}
+frac operator-(frac f) { return 0 - f; }
 
 std::ostream& operator<<(std::ostream& o, const frac f) {
     o << f.num << "/" << f.den;
