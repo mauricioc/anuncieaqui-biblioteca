@@ -1,6 +1,6 @@
 vector<int> lis(vector<int>& seq) {
     int smallest_end[seq.size()+1], prev[seq.size()];
-    smallest_end[1] = seq[0];
+    smallest_end[1] = 0;
 
     int sz = 1;
     for(int i = 1; i < seq.size(); ++i) {

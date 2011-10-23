@@ -1,5 +1,6 @@
-long double romberg(int a, int b, double(*func)(double)) {
-    long double approx[2][50];
+long double romberg(long double a, long double b,
+                    long double(*func)(long double)) {
+    long double approx[2][25];
     long double *cur=approx[1], *prev=approx[0];
 
     prev[0] = 1/2.0 * (b-a) * (func(a) + func(b));

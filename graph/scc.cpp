@@ -3,7 +3,7 @@ int prev_edge[MAXE], last_edge[MAXV], adj[MAXE], nedges;
 int cur_num, cur_comp;
 stack<int> visiting;
 
-int t_init() {
+void t_init() {
     memset(last_edge, -1, sizeof last_edge);
     nedges = 0;
 }
