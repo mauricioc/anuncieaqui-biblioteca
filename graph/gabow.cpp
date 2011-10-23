@@ -7,16 +7,13 @@ void g_init() {
     memset(last_edge, -1, sizeof last_edge);
 }
 
-void g_edge(int a, int b) {
+void g_edge(int a, int b, bool rev = false) {
     prev_edge[nedges] = last_edge[a];
     v[nedges] = a;
     w[nedges] = b;
     last_edge[a] = nedges++;
-
-    prev_edge[nedges] = last_edge[b];
-    v[nedges] = b;
-    w[nedges] = a;
-    last_edge[b] = nedges++;
+    
+    if(!rev) return g_edge(a, b, true);
 }
 
 void g_label(int v, int join, int edge, queue<int>& outer) {
@@ -99,9 +96,10 @@ int gabow(int n) {
                 memset(g_flag, 0, sizeof g_flag);
                 g_flag[r] = g_flag[s] = true;
 
-                while(true) {
+                while(r != -1 || s != -1) {
                     if(s != -1) swap(r, s);
                     r = first[label[mate[r]]];
+                    if(r == -1) continue;
                     if(g_flag[r]) break; g_flag[r] = true;
                 }
 
