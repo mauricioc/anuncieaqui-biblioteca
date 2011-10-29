@@ -12,8 +12,8 @@ void g_edge(int a, int b, bool rev = false) {
     v[nedges] = a;
     w[nedges] = b;
     last_edge[a] = nedges++;
-    
-    if(!rev) return g_edge(a, b, true);
+
+    if(!rev) return g_edge(b, a, true);
 }
 
 void g_label(int v, int join, int edge, queue<int>& outer) {
@@ -37,8 +37,7 @@ void g_augment(int _v, int _w) {
     if(type[_v] == 0) {
         mate[t] = label[_v];
         g_augment(label[_v], t);
-    }
-    else if(type[_v] == 1) {
+    } else if(type[_v] == 1) {
         g_augment(v[label[_v]], w[label[_v]]);
         g_augment(w[label[_v]], v[label[_v]]);
     }
@@ -48,7 +47,7 @@ int gabow(int n) {
     memset(mate, -1, sizeof mate);
     memset(first, -1, sizeof first);
 
-    int u = 0, ret = 0;
+    int ret = 0;
     for(int z = 0; z < n; ++z) {
         if(mate[z] != -1) continue;
 
