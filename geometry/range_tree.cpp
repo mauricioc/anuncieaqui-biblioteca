@@ -2,8 +2,6 @@ vector<pt> pts, tree[MAXSZ];
 vector<TYPE> xs;
 vector<int> lnk[MAXSZ][2];
 
-bool compy(pt a, pt b) { return cmp(a.y, b.y) < 0; }
-
 int rt_recurse(int root, int left, int right) {
     lnk[root][0].clear(); lnk[root][1].clear(); tree[root].clear();
 
