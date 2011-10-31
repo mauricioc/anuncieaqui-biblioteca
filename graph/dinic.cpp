@@ -42,8 +42,6 @@ bool d_auxflow(int source, int sink) {
     return false;
 }
 
-inline int rev(int i) { return i ^ 1; }
-
 int d_augmenting(int v, int sink, int c) {
     if(v == sink) return c;
 
@@ -54,7 +52,7 @@ int d_augmenting(int v, int sink, int c) {
         int val;
         if(val = d_augmenting(adj[i], sink, min(c, cap[i] - flow[i]))) {
             flow[i] += val;
-            flow[rev(i)] -= val;
+            flow[i^1] -= val;
             return val;
         }
     }

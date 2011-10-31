@@ -15,7 +15,7 @@ template<class T> void k_radix(T keys, int *in, int *out,
         out[bucket[keys[in[j]+off]]++] = in[j];
 }
 
-int mod0[MAXSZ/3+1];
+int m0[MAXSZ/3+1];
 vector<int> k_rec(const vector<int>& v, int k) {
     int n = v.size()-3, sz = (n+2)/3, sz2 = sz + n/3;
     if(n < 2) return vector<int>(n);
@@ -52,21 +52,21 @@ vector<int> k_rec(const vector<int>& v, int k) {
     for(int i = 0, j = 0; j < sz; i++)
         if(rec[i] < sz)
             tmp[j++] = 3*rec[i];
-    k_radix(v.begin(), tmp, mod0, 0, sz, k);
+    k_radix(v.begin(), tmp, m0, 0, sz, k);
     for(int i = 0; i < sz2; i++)
         rec[i] = rec[i] < sz ? 3*rec[i] + 1 : 3*(rec[i] - sz) + 2;
 
-    int prec = sz2-1, pmod0 = sz-1, pret = sz2+sz-1;
-    while(prec >= 0 && pmod0 >= 0)
-        if(rec[prec]%3 == 1 && k_cmp(v[mod0[pmod0]], v[rec[prec]],
-                                     sub[mod0[pmod0]/3], sub[rec[prec]/3+sz]) ||
-           rec[prec]%3 == 2 && k_cmp(v[mod0[pmod0]], v[rec[prec]],
-                                     v[mod0[pmod0]+1], v[rec[prec]+1],
-                                     sub[mod0[pmod0]/3+sz], sub[rec[prec]/3+1]))
+    int prec = sz2-1, p0 = sz-1, pret = sz2+sz-1;
+    while(prec >= 0 && p0 >= 0)
+        if(rec[prec]%3 == 1 && k_cmp(v[m0[p0]], v[rec[prec]],
+                                     sub[m0[p0]/3], sub[rec[prec]/3+sz]) ||
+           rec[prec]%3 == 2 && k_cmp(v[m0[p0]], v[rec[prec]],
+                                     v[m0[p0]+1], v[rec[prec]+1],
+                                     sub[m0[p0]/3+sz], sub[rec[prec]/3+1]))
             rec[pret--] = rec[prec--];
         else
-            rec[pret--] = mod0[pmod0--];
-    if(pmod0 >= 0) memcpy(&rec[0], mod0, sizeof(int) * (pmod0+1));
+            rec[pret--] = m0[p0--];
+    if(p0 >= 0) memcpy(&rec[0], m0, sizeof(int) * (p0+1));
 
     if(n%3==1) rec.erase(rec.begin());
     return rec;

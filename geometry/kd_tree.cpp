@@ -26,7 +26,7 @@ void kd_build() {
 }
 
 int kd_query(int root, TYPE a, TYPE b, TYPE c, TYPE d, TYPE ca = -INF,
-             TYPE cb = INF, TYPE cc = -INF, TYPE cd = INF, bool x) {
+             TYPE cb = INF, TYPE cc = -INF, TYPE cd = INF, bool x = true) {
     if(a <= ca && cb <= b && c <= cc && cd <= d)
         return val[root];
 
@@ -40,8 +40,7 @@ int kd_query(int root, TYPE a, TYPE b, TYPE c, TYPE d, TYPE ca = -INF,
             ret += kd_query(2*root+1, a, b, c, d, ca, split[root], cc, cd, !x);
         if(split[root] <= b)
             ret += kd_query(2*root+2, a, b, c, d, split[root], cb, cc, cd, !x);
-    }
-    else {
+    } else {
         if(c <= split[root])
             ret += kd_query(2*root+1, a, b, c, d, ca, cb, cc, split[root], !x);
         if(split[root] <= d)
@@ -52,7 +51,7 @@ int kd_query(int root, TYPE a, TYPE b, TYPE c, TYPE d, TYPE ca = -INF,
 
 pt kd_neighbor(int root, pt a, bool x) {
     if(tree[root] != -1)
-        return a == pts[tree[root]] ? pt(2e9, 2e9) : pts[tree[root]];
+        return a == pts[tree[root]] ? pt(INF, INF) : pts[tree[root]];
 
     TYPE num = x ? a.x : a.y;
     int term = num <= split[root] ? 1 : 2;
