@@ -1,4 +1,4 @@
-FILES = .busacker_gowen.cpp.hash .dinic.cpp.hash .gabow.cpp.hash .dijkstra_sparse_small.cpp.hash .scc.cpp.hash .heavy-light.cpp.hash
+FILES = .busacker_gowen.cpp.hash .dinic.cpp.hash .gabow.cpp.hash .dijkstra_sparse_small.cpp.hash .scc.cpp.hash
 
 all: $(FILES)
 
