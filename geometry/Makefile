@@ -8,4 +8,4 @@ $(FILES): .%.hash: %
 	../gen_hash.sh $< $@
 
 clean:
-	rm $(FILES)
+	rm -f $(FILES)

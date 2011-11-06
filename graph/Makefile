@@ -1,4 +1,4 @@
-FILES = .busacker_gowen.cpp.hash .dinic.cpp.hash .gabow.cpp.hash .dijkstra_sparse_small.cpp.hash .scc.cpp.hash
+FILES = .busacker_gowen.cpp.hash .dinic.cpp.hash .gabow.cpp.hash .scc.cpp.hash .link_cut.cpp.hash .gomory_hu.cpp.hash .heavy_light.cpp.hash .kuhn_munkres.cpp.hash
 
 all: $(FILES)
 
@@ -8,4 +8,4 @@ $(FILES): .%.hash: %
 	../gen_hash.sh $< $@
 
 clean:
-	rm $(FILES)
+	rm -f $(FILES)

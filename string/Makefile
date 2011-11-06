@@ -1,4 +1,4 @@
-FILES = .karkkainen.cpp.hash .morris_pratt.cpp.hash .aho_corasick.cpp.hash
+FILES = .karkkainen.cpp.hash .morris_pratt.cpp.hash .aho_corasick.cpp.hash .manacher.cpp.hash .aho_corasick_2.cpp.hash
 
 all: $(FILES)
 
@@ -8,4 +8,4 @@ $(FILES): .%.hash: %
 	../gen_hash.sh $< $@
 
 clean:
-	rm $(FILES)
+	rm -f $(FILES)

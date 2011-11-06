@@ -8,5 +8,5 @@ docs.pt_BR.pdf:
 .PHONY: clean biblioteca.pdf
 
 clean:
-	rm biblioteca.pdf biblioteca.log biblioteca.aux biblioteca.toc \
+	rm -f biblioteca.pdf biblioteca.log biblioteca.aux biblioteca.toc \
 	   docs.pt_BR.pdf docs.pt_BR.log docs.pt_BR.aux docs.pt_BR.toc
