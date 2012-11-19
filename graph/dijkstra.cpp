@@ -26,8 +26,8 @@ void decrease_key(int n, int d) {
 }
 
 int pop_heap(int& sz) {
-    int cur = 0, next = 2;
-    for(; next < sz; cur = next, next = 2*next+2) {
+    int cur = 0;
+    for(int next = 2; next < sz; cur = next, next = 2*next+2) {
         if(heap[next].d > heap[next-1].d) next--;
         d_swap(next, cur);
     }
