@@ -1,81 +1,47 @@
 typedef int TYPE;
 
-class treap {
-public:
-    treap *left, *right;
-    int priority, sons;
-    TYPE value;
+struct treap {
+    treap *lnk[2];
+    int pri, nsons;
+    TYPE val;
 
-    treap(TYPE value) : left(NULL), right(NULL), value(value), sons(0) {
-        priority = rand();
-    }
-
-    ~treap() {
-        if(left) delete left;
-        if(right) delete right;
+    treap(TYPE val) : val(val), nsons(1) { pri = rand(); lnk[0] = lnk[1] = 0; }
+    ~treap() { delete lnk[0]; delete lnk[1]; }
+    void fix_augment() {
+        nsons = 1 + (lnk[0] ? lnk[0]->nsons : 0) + (lnk[1] ? lnk[1]->nsons : 0);
     }
 };
 
+void rotate(treap*& t, bool to_r) {
+    treap* n = t->lnk[!to_r];
+    t->lnk[!to_r] = n->lnk[to_r];
+    n->lnk[to_r] = t;
+    t->fix_augment(); n->fix_augment();
+    t = n;
+}
+
 treap* find(treap* t, TYPE val) {
-    if(!t) return NULL;
-    if(val == t->value) return t;
-
-    if(val < t->value) return find(t->left, val);
-    if(val > t->value) return find(t->right, val);
+    for(;; t = t->lnk[val > t->val]) if(!t || t->val == val) return t;
 }
 
-void rotate_to_right(treap* &t) {
-    treap* n = t->left;
-    t->left = n->right;
-    n->right = t;
-    t = n;
+void insert(treap*& t, TYPE val) {
+    if(!t) t = new treap(val);
+    else { insert(t->lnk[val > t->val], val); t->fix_augment(); }
+
+    if(t->lnk[0] && t->lnk[0]->pri > t->pri) rotate(t, true);
+    else if(t->lnk[1] && t->lnk[1]->pri > t->pri) rotate(t, false);
 }
 
-void rotate_to_left(treap* &t) {
-    treap* n = t->right;
-    t->right = n->left;
-    n->left = t;
-    t = n;
+void remove_root(treap*& t) {
+    if(!t->lnk[0] && !t->lnk[1]) { delete t; t = 0; return; }
+
+    bool to_r = t->lnk[0] && (!t->lnk[1] || t->lnk[0]->pri > t->lnk[1]->pri);
+    rotate(t, to_r); remove_root(t->lnk[to_r]); t->fix_augment();
 }
 
-void fix_augment(treap* t) {
-    if(!t) return;
-    t->sons = (t->left ? t->left->sons + 1 : 0) +
-        (t->right ? t->right->sons + 1 : 0);
-}
-
-void insert(treap* &t, TYPE val) {
-    if(!t)
-        t = new treap(val);
-    else
-        insert(val <= t->value ? t->left : t->right, val);
-
-    if(t->left && t->left->priority > t->priority)
-        rotate_to_right(t);
-    else if(t->right && t->right->priority > t->priority)
-        rotate_to_left(t);
-
-    fix_augment(t->left); fix_augment(t->right); fix_augment(t);
-}
-
-inline int p(treap* t) {
-    return t ? t->priority : -1;
-}
-
-void erase(treap* &t, TYPE val) {
+void remove(treap*& t, TYPE val) {
     if(!t) return;
 
-    if(t->value != val)
-        erase(val < t->value ? t->left : t->right, val);
-    else {
-        if(!t->left && !t->right)
-            delete t, t = NULL;
-        else {
-            p(t->left) < p(t->right) ? rotate_to_left(t) : rotate_to_right(t);
-            erase(t, val);
-        }
-    }
-
-    fix_augment(t->left); fix_augment(t->right); fix_augment(t);
+    if(t->val != val) { remove(t->lnk[val > t->val], val); t->fix_augment(); }
+    else remove_root(t);
 }
-
