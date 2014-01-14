@@ -24,12 +24,12 @@ treap* find(treap* t, TYPE val) {
     for(;; t = t->lnk[val > t->val]) if(!t || t->val == val) return t;
 }
 
-void insert(treap*& t, TYPE val) {
-    if(!t) t = new treap(val);
-    else { insert(t->lnk[val > t->val], val); t->fix_augment(); }
+treap* insert(treap*& t, TYPE val) {
+    if(!t) return t = new treap(val);
 
-    if(t->lnk[0] && t->lnk[0]->pri > t->pri) rotate(t, true);
-    else if(t->lnk[1] && t->lnk[1]->pri > t->pri) rotate(t, false);
+    treap* n = insert(t->lnk[val > t->val], val);
+    if(n->pri > t->pri) rotate(t, val <= t->val); else t->fix_augment();
+    return n;
 }
 
 void remove_root(treap*& t) {
